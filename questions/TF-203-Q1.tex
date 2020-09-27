@@ -1,0 +1,47 @@
+\documentclass[convert = false, border=5pt]{standalone}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+
+\begin{document}
+
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,-2) grid (18,8);
+    \draw(0,3) node[antenna]{}
+    to [amp, box, >, l_=HF] ++ (3,0);
+    \draw(3.5,3) node[mixer, box, label=X] (mixx) {} ++(0.5,0)
+    to [amp, box, >, l_=1.ZF] ++ (3,0);
+    \draw(mixx.west) node[inputarrow] {} to [short] ++(-1.0,0);
+    \draw(mixx.south) node[inputarrow, rotate=90] {} to [short] ++(0,-1);
+    \draw(7.5,3) node[mixer, box, label=Y] (mixy) {} ++(0.5,0)
+    to [amp, box, >, l_=2.ZF] ++ (3,0);
+    \draw(mixy.west) node[inputarrow] {} to [short] ++(-1.0,0);
+    \draw(mixy.south) node[inputarrow, rotate=90] {} to [short] ++(0,-0.5);
+    \draw(11.5,3) node[mixer, box, label={~~~~Z}] (mixz) {} ++(0.5,0)
+    to [amp, box, >, l_=NF] ++ (3,0);
+    \draw(mixz.west) node[inputarrow] {} to [short] ++(-1.0,0);
+    \draw(mixz.south) node[inputarrow, rotate=90] {} to [short] ++(0,-1);
+    \draw(14.9,3) node[currarrow]{};
+    % Single Port Speaker:
+    \draw(15,2.5) rectangle (15.5,3.5);
+    \draw(15.5,2.3) -- (15.5,3.7);
+    \draw(15.5,3.5) -- (15.8,3.7) -- (15.8,2.3) -- (15.5, 2.5);
+    %
+    \draw(3,1) to [allpass, l_=VFO] (4,1);
+    \draw(11,1) to [allpass, l_=BFO] (12,1);
+    \draw(7.5,-1) node[ground](gnd1){} 
+        to [PZ] ++(0,1)
+        to [allpass, l_=CO] ++(0,2); 
+    %
+    \draw(11.5,3.5) -- (11.5,5) -- (1.5,5) -- (1.5,3.5);
+    \draw(1.5,3.5) node[inputarrow, rotate=-90] {} to [short] ++(0,0);
+    %
+    \draw(9.5,5) -- (9.5,3.5);
+    \draw(9.5,3.5) node[inputarrow, rotate=-90] {} to [short] ++(0,0);
+    %
+    \draw(5.5,5) -- (5.5,3.5);
+    \draw(5.5,3.5) node[inputarrow, rotate=-90] {} to [short] ++(0,0);
+        %
+    \draw(3.3,0.6) -- (3.65,1.3);
+    \draw(3.71,1.4) node[inputarrow, rotate=60] {} to [short] ++(0,0);
+\end{circuitikz}
+\end{document}
