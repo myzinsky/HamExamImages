@@ -17,14 +17,10 @@
     \draw(mixy.west) node[inputarrow] {} to [short] ++(-1.0,0);
     \draw(mixy.south) node[inputarrow, rotate=90] {} to [short] ++(0,-0.5);
     \draw(11.5,3) node[mixer, box, label={~~~~~~~~~~~~~~~~~~~~~~~Produktdetektor}] (mixz) {} ++(0.5,0)
-    to [amp, box, >, l_=NF] ++ (3,0);
+    to [amp, box, >, l_=NF] ++ (3,0) -- ++(0,0) node[loudspeakershape, anchor=south, rotate=-90](L){};
     \draw(mixz.west) node[inputarrow] {} to [short] ++(-1.0,0);
     \draw(mixz.south) node[inputarrow, rotate=90] {} to [short] ++(0,-1);
     \draw(14.9,3) node[currarrow]{};
-    % Single Port Speaker:
-    \draw(15,2.5) rectangle (15.5,3.5);
-    \draw(15.5,2.3) -- (15.5,3.7);
-    \draw(15.5,3.5) -- (15.8,3.7) -- (15.8,2.3) -- (15.5, 2.5);
     %
     \draw(3,1) to [allpass, l_=X] (4,1);
     \draw(11,1) to [allpass, l_=Z] (12,1);
