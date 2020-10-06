@@ -1,0 +1,11 @@
+\documentclass[convert = false, border=5pt]{standalone}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\begin{document}
+\begin{circuitikz}
+    \tikzstyle{help lines}=[black];
+    \draw[style=help lines] (0,-3) grid (7,3);
+    \draw[ultra thick, black] (0,0) sin (1,2) cos (2,0) sin (3,-2) cos (4,0) sin (5,2) cos (6,0) sin (7,-2);
+    \node[] at (6,-3.5) {5\,ms/Div.};
+    \node[rotate=90] at (-0.5,2) {10\,V/Div.};
+\end{circuitikz}
+\end{document}
