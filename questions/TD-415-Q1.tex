@@ -1,0 +1,29 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\usepackage{tikz,pgfplots}
+\usepgfplotslibrary{fillbetween}
+
+\begin{document} 
+\begin{tikzpicture}
+    \pgfplotsset{samples=200}
+    \begin{axis}[
+        ticks=none,
+        xmin =  0,
+        ymin = -3,
+        xmax =  7,
+        ymax =  3,
+        domain = 0:7,
+        grid=both,
+        grid style={line width=.1pt, draw=black},
+        major grid style={line width=.2pt,draw=black},
+        xtick = {0,1,2,3,4,5,6,7},
+        ytick = {-3,-2,-1,0,1,2,3},
+        thick,
+        smooth,
+        no markers]
+    \addplot+[name path=A,ultra thick, black] { 2.7*(sin(deg(x*1.13)) +
+        sin(deg(x*3*1.13))/4)};
+    \end{axis}
+\end{tikzpicture}
+\end{document}
