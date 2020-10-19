@@ -1,0 +1,21 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\begin{document}
+\begin{circuitikz}
+    \tikzstyle{help lines}=[black];
+    \draw[style=help lines] (0,-4) grid (6,3);
+    %\draw[rounded corners=6mm, ultra thick, black] (0,-4) -- (1,-4) -- (1.5,2)
+    \draw[ultra thick, black] (0,-4) 
+         [rounded corners=5mm] -- (0.8,-4)
+         [rounded corners=2mm] -- (1.8,2)
+         -- (2,2.3) -- (2.5,2.5)
+         -- (3,2.35) -- (3.5,2.5)
+         -- (4,2.3) -- (4.2,  2)
+         [rounded corners=5mm] -- (5.2,-4)  -- (6,-4);
+    \node[] at (5,-4.5) {1\,kHz/Div.};
+    \node[rotate=90] at (-0.5,-3) {10\,dB/Div.};
+    \node[] at (-0.5,3) {0\,dB};
+\end{circuitikz}
+\end{document}

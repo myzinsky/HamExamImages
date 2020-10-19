@@ -1,0 +1,11 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\begin{document}
+\begin{circuitikz}
+    \tikzstyle{help lines}=[black];
+    \draw[style=help lines] (0,-3) grid (8,3);
+    \draw[ultra thick, black] (0,0) sin (2,3) cos (4,0) sin (6,-3) cos (8,0);
+\end{circuitikz}
+\end{document}
