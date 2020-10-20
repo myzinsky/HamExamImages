@@ -1,13 +1,11 @@
 % Author: Dr. Matthias Jung, DL9MJ
 % Year: 2020
 \documentclass[convert = false, border=5pt]{standalone}
-\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\input{../common/settings.tex}
 
 \begin{document}
 
 \begin{circuitikz}
-    %\tikzstyle{help lines}=[blue!50];
-    %\draw[style=help lines] (0,0) grid (10,4);
     \draw (2.5,3) node[mixer, box, label=Mischer] (mix) {} ++(1,0);
     \draw (mix.west) node[inputarrow] {} to [short, label=HF] ++(-2.0,0);
     \draw (mix.south) node[inputarrow, rotate=90] {} to [short, label=$f_{OSZ}$] ++(0,-1.5);
