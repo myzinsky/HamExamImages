@@ -1,14 +1,20 @@
 # Makefile:
 
 TEXS = $(wildcard *.tex)
-#PDFS = $(patsubst %.tex,%.pdf, $(TEXS)) 
-PDFS = $(patsubst %.tex,../build/%.pdf, $(TEXS))
+PDFS = $(patsubst %.tex,../build/pdf/%.pdf, $(TEXS))
+SVGS = $(patsubst %.tex,../build/svg/%.svg, $(TEXS))
 
-all: $(PDFS)
+all: $(SVGS)
 
-../build/%.pdf: %.tex 
-	TEXINPUTS=.:../common//: pdflatex -output-directory=../build $< > /dev/null
-	rm ../build/*.aux ../build/*.log
+.SECONDARY:
+
+../build/svg/%.svg: ../build/pdf/%.pdf
+	pdftocairo -svg $< $@
+
+../build/pdf/%.pdf: %.tex 
+	TEXINPUTS=.:../common//: lualatex -output-directory=../build/pdf $< > /dev/null
+	rm -f ../build/pdf/*.aux ../build/pdf/*.log
 
 clean:
-	rm ../build/*.pdf
+	rm -f ../build/pdf/*.pdf
+	rm -f ../build/svg/*.svg

@@ -2,4 +2,4 @@ all:
 	cd questions && make
 
 clean:
-	rm build/*.pdf
+	cd questions && make clean
