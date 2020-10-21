@@ -10,22 +10,24 @@
     %\draw[style=help lines] (0,-2) grid (18,8);
     \draw(0,3) node[antenna]{}
     to [amp, box, >, l_=HF] ++ (3,0);
-    \draw(3.5,3) node[mixer, box, label={1. Mischer}] (mixx) {} ++(0.5,0)
+    \draw(3.5,3) node[mixer, box, label=X] (mixx) {} ++(0.5,0)
     to [amp, box, >, l_=1.ZF] ++ (3,0);
     \draw(mixx.west) node[inputarrow] {} to [short] ++(-1.0,0);
     \draw(mixx.south) node[inputarrow, rotate=90] {} to [short] ++(0,-1);
-    \draw(7.5,3) node[mixer, box, label={2. Mischer}] (mixy) {} ++(0.5,0)
+    \draw(7.5,3) node[mixer, box, label=Y] (mixy) {} ++(0.5,0)
     to [amp, box, >, l_=2.ZF] ++ (3,0);
     \draw(mixy.west) node[inputarrow] {} to [short] ++(-1.0,0);
     \draw(mixy.south) node[inputarrow, rotate=90] {} to [short] ++(0,-0.5);
-    \draw(11.5,3) node[mixer, box, label={~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Produktdetektor}] (mixz) {} ++(0.5,0)
+    \draw(11.5,3) node[mixer, box, label={~~~~Z}] (mixz) {} ++(0.5,0)
     to [amp, box, >, l_=NF] ++ (3,0) -- ++(0,0) node[loudspeakershape, anchor=south, rotate=-90](L){};
     \draw(mixz.west) node[inputarrow] {} to [short] ++(-1.0,0);
     \draw(mixz.south) node[inputarrow, rotate=90] {} to [short] ++(0,-1);
     \draw(14.9,3) node[currarrow]{};
     %
-    \draw(3,1) to [allpass, l_=VFO] (4,1);
-    \draw(11,1) to [allpass, l_=BFO] (12,1);
+    \draw(3,1) to [allpass] (4,1);
+    \draw(4.45,1) node[] {VFO};
+    \draw(11,1) to [allpass] (12,1);
+    \draw(12.45,1) node[] {BFO};
     \draw(7.5,-1) node[ground](gnd1){} 
         to [PZ] ++(0,1)
         to [allpass, l_=CO] ++(0,2); 
@@ -38,7 +40,7 @@
     %
     \draw(5.5,5) -- (5.5,3.5);
     \draw(5.5,3.5) node[inputarrow, rotate=-90] {} to [short] ++(0,0);
-    %
+        %
     \draw(3.3,0.6) -- (3.65,1.3);
     \draw(3.71,1.4) node[inputarrow, rotate=60] {} to [short] ++(0,0);
 \end{circuitikz}
