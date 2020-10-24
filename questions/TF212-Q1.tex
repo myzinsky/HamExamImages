@@ -1,0 +1,68 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+
+\begin{document}
+
+\begin{circuitikz}
+    \draw (0,0) node [spdt](sw){} ++(0,0) ;
+    \draw (-1,2.5) node [antenna]{} |- (sw.in);
+    \draw (sw.out 1) |- (1,2.5);
+    \draw (1,2.5) to [twoport, box] ++ (3,0) 
+                  to [short] ++ (2,0) node[inputarrow]{};
+    \draw (2.40,2.65) node[]{\huge$\triangleright$};
+    \draw (2.65,2.25) node[]{HF};
+    \draw (6.5,2.5) node[mixer, box] (mix) {};
+    \draw (mix.e) to [short] ++(1,0);
+    \draw (9,0) node [spdt, xscale=-1](sw2){} ++(0,0) ;
+    \draw (sw2.out 1) |- (8,2.5);
+    %
+    \draw (10,0) to [twoport, text=TRX] ++(1,0);
+    \draw (sw2.in) |- (10,0);
+    %
+    \draw (6.5,-2.5) node[mixer, box] (mix2) {};
+    \draw (sw2.out 2) |- (8,-2.5);
+    \draw (mix2.e) node[inputarrow, rotate=180]{} to [short] ++(1,0);
+    \draw (mix2.w) to [amp, box, >] ++ (-3,0)
+           to [amp, box, >] ++ (-1,0)
+           to [short] ++(-1,0);
+    \draw (sw.out 2) |- (1,-2.5);
+    %
+    \draw (2,0) to [twoport] ++(1,0);
+    \draw(2.3,0.2) node[] {G};
+
+    \def\x{0.08}
+    \draw[] (2.55,0.3) sin ++(\x, \x)
+                       cos ++(\x,-\x)
+                       sin ++(\x,-\x)
+                       cos ++(\x, \x);
+
+    \draw[] (2.55,0.15)sin ++(\x, \x)
+                       cos ++(\x,-\x)
+                       sin ++(\x,-\x)
+                       cos ++(\x, \x);
+
+    \draw[] (2.55,0.0) sin ++(\x, \x)
+                       cos ++(\x,-\x)
+                       sin ++(\x,-\x)
+                       cos ++(\x, \x);
+
+    \draw (2.2,-0.40) -- ++(0.6,0);
+    \draw (2.2,-0.35) rectangle ++ (0.6,0.1);
+    \draw (2.2,-0.20) -- ++(0.6,0);
+    %
+    \draw (3,0) to [twoportsplit, t1=1, t2=3, >] ++(3,0);% to [short,*];
+    \draw (6,0) -| (mix.s)  node[inputarrow, rotate=90](){};
+    \draw (6,0) -| (mix2.n) node[inputarrow, rotate=-90](){};
+    \draw (6.5,0) node[circ]{};
+    %
+    \draw (2.5,-0.9) node[] {38,666\,MHz};
+    \draw (10.5 ,-0.9) node[] {28...30\,MHz};
+    %
+    \draw (0, 0.7) node[] {RX};
+    \draw (0,-0.7) node[] {TX};
+    \draw (9, 0.7) node[] {RX};
+    \draw (9,-0.7) node[] {TX};
+\end{circuitikz}
+\end{document}

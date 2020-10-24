@@ -1,0 +1,36 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+
+\begin{document}
+
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,-2) grid (18,8);
+    \draw(0,3) node[antenna]{}
+    to [bandpass, box, >, l_={3...30\,MHz}] ++ (3,0);
+    \draw(3.5,3) node[mixer, box] (mixx) {} ++(0.5,0)
+    to [bandpass, box, >, l_={50\,MHz}] ++ (3,0);
+    \draw(mixx.west) node[inputarrow] {} to [short] ++(-1.0,0);
+    \draw(mixx.south) node[inputarrow, rotate=90] {} to [short] ++(0,-1);
+    \draw(7.5,3) node[mixer, box] (mixy) {} ++(0.5,0)
+    to [bandpass, box, >, l_={9\,MHz}] ++ (3,0);
+    \draw(mixy.west) node[inputarrow] {} to [short] ++(-1.0,0);
+    \draw(mixy.south) node[inputarrow, rotate=90] {} to [short] ++(0,-1);
+    \draw(11.5,3) node[mixer, box] (mixz) {} ++(0.5,0)
+    to [bandpass, box, >, l_={455\,kHz}] ++ (3,0)
+    to [short, -o, l_=3.ZF] ++(0.0,0);
+    \draw(mixz.west) node[inputarrow] {} to [short] ++(-1.0,0);
+    \draw(mixz.south) node[inputarrow, rotate=90] {} to [short] ++(0,-1);
+    %
+    \draw(3,1) to [twoport, text=VFO] (4,1);
+    \draw(11,1) to [twoport, text=CO1] (12,1);
+    \draw(13.1,1) node[] {9,455\,MHz};
+    \draw(7,1) to [twoport, text=CO2] (8,1);
+    \draw(8.80,1) node[] {41\,MHz};
+    \draw(5.5,3.75) node[] {1.ZF};
+    \draw(9.5,3.75) node[] {2.ZF};
+    %
+\end{circuitikz}
+\end{document}
