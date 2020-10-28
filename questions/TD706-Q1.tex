@@ -1,0 +1,35 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+
+\usepackage[euler]{textgreek}
+
+\begin{document}
+
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,0) grid (10,4);
+    \draw(0,2) to [twoport] ++(1,0)
+               to [twoport, text=\Large\textphi] ++(3,0)
+               to [twoport, text={:n}] ++(1.0,0)
+               to [twoport, text={VCO}] ++(3,0)
+               to [short, -o] ++(0.0,0);
+    \draw(8,1.7) node[](){Ausgang};
+    \draw(1.5,2) node[circ]{} to [short, -o] ++(0,1);
+    \draw(3.5,2) node[circ]{} to [short, -o] ++(0,1);
+    \draw(5.5,2) node[circ]{} to [short, -o] ++(0,1);
+    \draw(1.5,3.4) node[](){A};
+    \draw(3.5,3.4) node[](){B};
+    \draw(5.5,3.4) node[](){C};
+    \draw(4,0) to [lowpass] ++(1,0);
+    \draw(2.5,1.5) |- (4,0)  node[inputarrow, rotate=0](){};
+    \draw(5,0) -| (6.5,1.5)  node[inputarrow, rotate=90](){};
+    \draw(3.1,2) node[currarrow, rotate=180]{};
+    \draw(5.1,2) node[currarrow, rotate=180]{};
+    \draw(0.5,2.2) node[](){G};
+    \draw(0.2,1.65) -- (0.8,1.65);
+    \draw(0.2,1.75) rectangle (0.8,1.85);
+    \draw(0.2,1.95) -- (0.8,1.95);
+\end{circuitikz}
+\end{document}

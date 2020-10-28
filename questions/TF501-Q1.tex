@@ -1,0 +1,19 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+
+\begin{document}
+
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,0) grid (10,4);
+    \draw (0,0.5) to [twoportsplit] ++(2,0);
+    \draw (5,0.5) to [twoportsplit] ++(2,0);
+    \draw[line width=1pt] (2,0) rectangle ++ (3,1);
+    \draw (3.5,0.75) node[] {Digitale Signal-};
+    \draw (3.5,0.25) node[] {verarbeitung};
+    \draw (1,-0.25) node[] {1};
+    \draw (6,-0.25) node[] {2};
+\end{circuitikz}
+\end{document}
