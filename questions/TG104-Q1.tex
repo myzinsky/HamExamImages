@@ -1,0 +1,24 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+
+\begin{document}
+
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,0) grid (10,6);
+    \draw (0,3) to [allpass, l_=VFO] ++(1,0)
+                to [twoportsplit,t1=f,t2={2\,f},>] ++(3,0)
+                to [twoportsplit,t1=f,t2={2\,f},>] ++(1,0)
+                to [twoportsplit,t1=f,t2={2\,f},>] ++(3,0)
+                to [short, -o] ++(0,0);
+    \draw (4,5) to [twoportsplit,t1=f,t2={3\,f},>] ++(1,0);
+    \draw (1.5,3) node[circ]{} |- (8,0) to [short, -o] ++(0,0);
+    \draw (3.5,3) node[circ]{} |- (8,0.75) to [short, -o] ++(0,0);
+    \draw (3.5,3)  |- (4,5);
+    \draw (5,5)  -- (5.7,5) |- (8,2.25) to [short, -o] ++(0,0);
+    \draw (5.3,3) node[circ]{} |- (8,1.5) to [short, -o] ++(0,0);
+    \draw (8.3,2.25) node[]{X};
+\end{circuitikz}
+\end{document}
