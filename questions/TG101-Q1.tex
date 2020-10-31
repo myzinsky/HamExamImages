@@ -1,0 +1,46 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+
+\begin{document}
+
+\begin{circuitikz}
+    \draw (0,0) node[ground] (gnd1) {}
+    to [piezoelectric,/tikz/circuitikz/bipoles/length=0.7cm, >] ++(0,1.5);
+    \draw (-0.5,2) to [allpass] ++(1,0) to [short, >] ++(1,0)
+                   to node[inputarrow]{} ++(0,0);
+    \draw (2,2) node[mixer, box] (mix1) {} ++(1,0);
+    \draw (2,3.2) node[](){Balance-};
+    \draw (2,2.8) node[](){modulator};
+    \draw (2.5,2) -- ++(1,0) to node[inputarrow]{} ++(0,0);
+    \draw (3.5,2) to [twoport, box, text=?] ++(1,0);
+    \draw (4.5,2) -- ++(1,0) to node[inputarrow]{} ++(0,0);
+    \draw (6,2) node[mixer, box] (mix2) {} ++(1,0);
+    \draw (6,2.8) node[](){Mischer};
+    \draw (mix2.e) to [amp, box, l={Treiber}, >] ++(3,0)
+                   to [amp, box, l={PA}, >] ++(1,0) to [short] ++(1,0) to
+                   node[inputarrow]{} ++(0,0);
+    \draw[line width=0.8pt] (11.5,1.5) rectangle ++ (2,1);
+    \draw (14.5,2) node [antenna]{};
+    \draw (13.5,2) -- (14.5,2);
+    \draw (14,2) circle (0.15cm);
+    \draw (14,1.85) node[ground] (gnd2) {};
+    \draw (1.5,0) to [amp, box] ++(1,0);
+    \draw (2,0.5) -- ++(0,1) to node[inputarrow, rotate=90]{} ++(0,0);
+    \draw (1,0) node[](){NF};
+    \draw (6,0) node [allpassshape, name=AP]{};
+    \draw (6,0)[-Triangle, shorten >=4pt, shorten <=4pt] ([xshift=4pt]AP.sw) -- ([xshift=-4pt]AP.ne); 
+    \draw (6,0.5) -- ++(0,1) to node[inputarrow, rotate=90]{} ++(0,0);
+    \draw (5,0) node[](){VFO};
+    \draw (10,1.5) -- ++(0,-1) to node[inputarrow, rotate=-90]{} ++(0,0);
+    \draw (9.5,0) to [twoport, text=ALC] ++(1,0);
+    \draw (9.5,0) -| (8,1.5) to node[inputarrow, rotate=90]{} ++(0,0);
+    %
+    \draw (12,1.85) node[rground, /tikz/circuitikz/grounds/scale=0.7] (gnd3) {};
+    \draw (13,1.85) node[rground, /tikz/circuitikz/grounds/scale=0.7] (gnd4) {};
+    \draw (11.75,2.2) to[L, inductors/scale=0.7, inductor=american] ++(1.5,0);
+    \draw (12,2.2) to[C, capacitors/scale=0.5, inductor=american] ++(0,-0.55);
+    \draw (13,2.2) to[C, capacitors/scale=0.5, inductor=american] ++(0,-0.55);
+\end{circuitikz}
+\end{document}

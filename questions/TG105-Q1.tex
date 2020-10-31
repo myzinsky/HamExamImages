@@ -1,0 +1,31 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+
+\begin{document}
+
+\begin{circuitikz}
+    \draw[line width=0.8pt] (2.5,1.5) rectangle ++ (2,1);
+    \draw (3.5,2.25) node[](){Oszillator};
+    \draw (3.5,1.75) node[](){47,9\,MHz};
+    \draw (4.5,2) -- ++(1,0) to node[inputarrow]{} ++(0,0);
+    %
+    \draw[line width=0.8pt] (5.5,1.5) rectangle ++ (2,1);
+    \draw (6.5,2) node[](){A};
+    \draw (7.5,2) -- ++(1,0) to node[inputarrow]{} ++(0,0);
+    %
+    \draw[line width=0.8pt] (8.5,1.5) rectangle ++ (2,1);
+    \draw (9.5,2) node[](){B};
+    \draw (10.5,2) -- ++(1,0) to node[inputarrow]{} ++(0,0);
+    %
+    \draw[line width=0.8pt] (11.5,1.5) rectangle ++ (2,1);
+    \draw (12.5,2) node[](){Endstufe};
+    \draw (14.5,2) node [antenna]{};
+    \draw (13.5,2) -- (14.5,2);
+    \draw (14,2) circle (0.15cm);
+    \draw (14,1.85) node[ground] (gnd2) {};
+    %
+    \draw (15.2,1.6) node[](){431,1\,MHz};
+\end{circuitikz}
+\end{document}
