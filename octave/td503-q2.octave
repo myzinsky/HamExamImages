@@ -1,0 +1,38 @@
+addpath('~/Zeugs/matlab2tikz/src/');
+pkg load signal
+
+t = 0.167*pi:0.01:1.834*pi;
+t2 = 0*pi:0.018:3*pi;
+x1 = sin(t).*sin(24.*t);
+x2 = max(0,x1);
+
+y=0
+x3 = []
+for x = x2
+  if (x >= y)
+    y = x;
+  else
+    y = y - (1.0 - x) * 0.008;
+  endif
+  x3 = [x3 ; y];
+endfor
+
+x4 = 0.70 * sin (t2);
+
+plot(x1);
+matlab2tikz('p1.tex');
+
+plot(x2);
+matlab2tikz('p2.tex');
+
+plot(x3);
+matlab2tikz('p3.tex');
+
+plot(x4);
+matlab2tikz('p4.tex');
+
+
+hold on;
+plot(x3);
+hold off;
+
