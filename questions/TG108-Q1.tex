@@ -1,0 +1,34 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+
+\begin{document}
+
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,-2) grid (10,4);
+    \draw (-0.2,3) circle (0.2);
+    \draw[thick]  (-0.4,3.2) -- (-0.4,2.8);
+    \draw (0,3) to [amp,box] ++(3,0);
+    \draw (3.5,3) node[mixer, box] (mix) {} ++(1,0);
+    \draw (mix.east) to [bandpass, >] ++ (3,0)
+                     to node[inputarrow] {} ++(0,0) ;
+    \draw (3,1) to [twoport, text=G] ++ (1,0);
+    %
+    \draw (5.5,-0.1) node[spdt, rotate=-90] (schalter) {}; 
+    %
+    \draw (5,-2) node[circ]{} -- (5,-1.5) to [piezoelectric,/tikz/circuitikz/bipoles/length=0.7cm, >] ++(0,0.6) to (schalter.out 2);
+    \draw (6,-2) -- (6,-1.5) to [piezoelectric,/tikz/circuitikz/bipoles/length=0.7cm, >] ++(0,0.6) to (schalter.out 1);
+    \draw (3,1) -- ++(-1,0) -- ++(0,-3) -- ++ (4,0);
+    \draw (schalter.in) |- (4,1);
+    \draw (3.5,1.5) -- (mix.south) node[inputarrow, rotate=90]{};
+    %
+    \draw (4.1,2) node[] {$f_{OSZ}$};
+    \draw (4.5,3.5) node[] {DSB};
+    \draw (6.5,3.5) node[] {SSB};
+    \draw (6.5,-0.5) node[] {USB};
+    \draw (4.5,-0.5) node[] {LSB};
+    \draw (3.5,-1.25) node[] {9,0015\,MHz};
+\end{circuitikz}
+\end{document}

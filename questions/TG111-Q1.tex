@@ -1,0 +1,74 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+
+
+\begin{document}
+\begin{circuitikz}
+    \tikzstyle{help lines}=[blue!50];
+    \draw[style=help lines] (0,0) grid (12,12);
+    %\draw (4.5,5) node[mixer, box] (mix) {};
+    %\draw (2,5) node [antenna]{} |- (mix.w) node [inputarrow] {};
+    %\draw (mix.e) to [bandpass, >] ++ (3,0) node [inputarrow] {};
+    %\draw (8.5,5) node[mixer, box] (mix2) {};
+    %\draw (mix2.e) |- ++(0.5,0)  node [inputarrow] {};
+    %%
+    %\draw (8.5,1) node[mixer, box] (mix3) {};
+    %\draw (mix2.s) node [inputarrow, rotate=90] {}
+    %       to [twoport] (mix3.n) node [inputarrow, rotate=-90] {} ;
+    %\draw (8.2,2.65) -- ++(0.6,0);
+    %\draw (8.2,2.70) rectangle ++ (0.6,0.1);
+    %\draw (8.2,2.85) -- ++(0.6,0);
+    %\draw (8.5,3.25) node[] {G};
+    %\draw (8.8, 4) node[] {70};
+    %\draw (8.8, 2) node[] {70};
+    %\draw (8.8, 0) node[] {5};
+    %%
+    %\draw[line width=1pt] (0,-0.5) rectangle ++ (9,-1);
+    %\draw (4.5,-1.0) node[] {TEILER};
+    %\draw (mix3.s) node [inputarrow, rotate=90] {} to ++(0,-1);
+    %%
+    %\draw (4.5,-0.5) to [twoport,>] ++ (0,3);
+    %\draw (4.5,1.5) to [twoport,>] ++ (0,3) node [inputarrow, rotate=90] {};
+    %\draw (5.50, 4) node[] {70,5...100,5};
+    %\draw (5.40, 2) node[] {67,5...68,5};
+    %\draw (4.95, 0) node[] {$10^{-4}$};
+    %\draw (4.5, 3.16) node[] {$\mbox{VCO}_2$};
+    %\draw (4.5, 2.8) node[] {PLL};
+    %\draw (4.5, 1.16) node[] {$\mbox{VCO}_1$};
+    %\draw (4.5, 0.8) node[] {PLL};
+    %\draw (mix3.w) |- ++(-3,0) node [inputarrow, rotate=180] {};
+    %\draw (5.40, 1.3) node[] {65};
+    %%
+    %\draw (1.5,1) to [twoport, text=VFO] ++ (1,0) to [short] ++ (1.5,0)  node[inputarrow]{};
+    %\draw (3.25, 1.3) node[] {2,5...3,5};
+    %%
+    %\draw (0,3) to [twoport] ++ (1,0) to ++(3,0) node [inputarrow] {};
+    %\draw (2.5, 3.3) node[] {3...32};
+    %\draw (0,3.5) to (1,2.5);
+    %\draw (0.25, 2.75) node[] {1};
+    %\draw (0.70, 3.20) node[] {$\mbox{n}_{\mbox{p}}$};
+    %\draw (0.5,-0.5) |- ++(0,3) node [inputarrow, rotate=90] {};
+    %\draw (0.7, 0) node[] {1};
+    %%
+    %\draw ( 3.0, 5.3) node[] {0...30};
+    %\draw ( 5.5, 5.3) node[] {70,5};
+    %\draw ( 7.5, 5.3) node[] {70,5};
+    %\draw (10.3, 5.0) node[] {0,5 \scriptsize{(2.ZF)}};
+    %%
+    %\draw (10,-1) to [twoport] ++(1,0);
+    %\draw (9.5, -0.7) node[] {10};
+    %\draw (10,-1) to ++(-1,0) node [inputarrow, rotate=180] {};
+    %\draw (10.2,-1.35) -- ++(0.6,0);
+    %\draw (10.2,-1.30) rectangle ++ (0.6,0.1);
+    %\draw (10.2,-1.15) -- ++(0.6,0);
+    %\draw (10.5,-0.75) node[] {G};
+\end{circuitikz}
+\end{document}

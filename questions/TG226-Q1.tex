@@ -1,0 +1,19 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+
+\begin{document}
+
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,-2) grid (10,4);
+    \draw (3,3) node[mixer, box] (mix) {} ++(1,0);
+    \draw (mix.west) node[inputarrow, rotate=0] {} to [short] ++(-1.5,0);
+    \draw (mix.east) to [short] ++( 1.5,0) to node[inputarrow, rotate=0]{} ++ (0,0);
+    \draw (mix.south) node[inputarrow, rotate=90] {} to [short] ++(0,-1);
+    \draw (1,3.5) node[] {21\,MHz};
+    \draw (5,3.5) node[] {?\,MHz};
+    \draw (4,2) node[] {31,7\,MHz};
+\end{circuitikz}
+\end{document}
