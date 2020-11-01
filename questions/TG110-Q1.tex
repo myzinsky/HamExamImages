@@ -1,0 +1,77 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+
+\begin{document}
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,-1) grid (18,14);
+    %
+    \draw[line width=1pt] (4,-1) rectangle ++ (8,1);
+    \draw (8,-0.5) node[] {Frequenzteiler};
+    % DASHED RECT 1
+    \draw (4,4) to [twoport, text={\Large\textphi}] ++(1,0);
+    \draw (4.5,0) -- ++(0,3.5) node[inputarrow, rotate=90]{};
+    \draw (4.5,4.5) to [lowpass,>] ++ (0,3)
+                    to [twoport, text={VCO1}, >] ++(0,1);
+    \draw (4.5,8.5) -- ++(0,0.5) node[circ]{} |- ++(1,2.5) node [inputarrow]{};
+    \draw (2.5,5.5) to [twoport, text={:n}] ++ (0,1);
+    \draw (4.5,9) -| (2.5,6.5) node[inputarrow,rotate=-90]{};
+    \draw (2.5,5.5) |- (4,4) node[inputarrow,rotate=0]{};
+    \draw[line width=1pt, dashed] (1,3) rectangle (5.5,10);
+    % DASHED RECT 2
+    \draw (9.5,4) to [twoport, text={\Large\textphi}] ++(1,0);
+    \draw (10,0) -- ++(0,3.5) node[inputarrow, rotate=90]{};
+    \draw (10,4.5) to [lowpass,>] ++ (0,3)
+                   to [twoport, text={VCO2}, >] ++(0,1);
+    \draw (10,8.5) -- ++(0,0.5) node[circ]{} -- ++(0,2) node [inputarrow, rotate=90]{};
+    \draw (8,5.5) to [twoport, text={:n}] ++ (0,1);
+    \draw (10,9) -| (8,6.5) node[inputarrow,rotate=-90]{};
+    \draw (8,5.5) |- (9.5,4) node[inputarrow,rotate=0]{};
+    \draw[line width=1pt, dashed] (6.5,3) rectangle (11,10);
+    %
+    \draw (   6, 11.5) node[mixer, box] (mix1) {};
+    \draw (  10, 11.5) node[mixer, box] (mix2) {};
+    \draw (  14, 11.5) node[mixer, box] (mix3) {};
+    \draw (11.5,1.5) node[mixer, box] (mix4) {};
+    \draw (mix1.east) -- (mix2.west) node[inputarrow, rotate=0]{};
+    \draw (mix2.east) -- (mix3.west) node[inputarrow, rotate=0]{};
+    \draw (11.5,0) -- (mix4.south) node[inputarrow, rotate=90]{};
+    \draw (mix4.west) -| (mix1.south) node[inputarrow, rotate=90]{};
+    %
+    \draw (13.5,-0.5) to[twoport, text={CO}] ++(1,0);
+    \draw (13.5,-0.5) -- ++(-1.5,0) node[inputarrow, rotate=-180]{};
+    \draw (14.0,0) -- ++(0,1) node[inputarrow, rotate=90]{};
+    \draw (13.5,1.5) to [twoportsplit, t1={7$\cdot$f}, t2={f}] ++(1,0);
+    \draw (14.0,2) -- (mix3.south) node[inputarrow, rotate=90]{};
+    \draw (13.5,1.5) -- ++(-1.5,0) node[inputarrow, rotate=-180]{};
+    \draw (mix3.east) -- ++(+1,0) node[inputarrow]{};
+    % Captions:
+    \draw (14.4,0.5) node[] {10};
+    \draw (12.8,-0.2) node[] {10\,MHz};
+    \draw (12.2,0.5) node[] {5\,MHz};
+    \draw (12.8,1.8) node[] {70\,MHz};
+    \draw (10.7,0.5) node[] {1\,MHz};
+    \draw (5.2,0.5) node[] {100\,Hz};
+    \draw (8,1.8) node[] {65\,MHz};
+    \draw (14.8,10.5) node[] {70\,MHz};
+    \draw (11.1,10.5) node[] {6...32\,MHz};
+    \draw (3.1,10.5) node[] {2...2,9999\,MHz};
+    \draw (2.1,9.5) node[] {PLL VCO 1};
+    \draw (7.6,9.5) node[] {PLL VCO 2};
+    \draw (7.0,6.0) node[] {6...32};
+    \draw (1.525,6.25) node[] {\scriptsize20000...};
+    \draw (1.525,5.75) node[] {\scriptsize29999~~~~};
+    \draw (8.0,11.8) node[] {67...67,9999\,MHz};
+    \draw (12.0,11.8) node[] {73...99,9999\,MHz};
+    \draw (16.0,11.8) node[] {3...29,9999\,MHz};
+\end{circuitikz}
+\end{document}
