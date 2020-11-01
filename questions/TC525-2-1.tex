@@ -1,0 +1,18 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\begin{document}
+\begin{circuitikz}
+    \draw (0.8, 0) -- ++(4.6,0.0) node[inputarrow]{};
+    \draw (1.0,-2) -- ++(0.0,2.5) node[inputarrow, rotate=90]{};
+    \draw[ultra thick, rounded corners=0.2]
+        (2,0) sin ++(0.5,-1) cos ++(0.5, 1);
+    \draw[ultra thick, rounded corners=0.2]
+        (4,0) sin ++(0.5,-2) cos ++(0.5, 2);
+    \draw (5.6,0) node[]{t};
+    %\draw[dashed] (0.8, 2) -- ++(4.6,0.0);
+    %\draw (0.4,2) node[]{1\,V};
+\end{circuitikz}
+\end{document}
