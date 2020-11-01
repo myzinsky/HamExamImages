@@ -1,0 +1,73 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{etoolbox}
+\makeatletter
+
+\pgfcircdeclarebipole{}
+    {\ctikzvalof{bipoles/tline/height}}{tline}
+    {\ctikzvalof{bipoles/tline/height}}
+    {\ctikzvalof{bipoles/tline/width}}
+{   
+    %% First find distance from startpoint to endpoint
+    \pgfpointdiff{\pgfpointanchor{\ctikzvalof{bipole/name}start}{center}}
+                 {\pgfpointanchor{\ctikzvalof{bipole/name}end}{center}}
+    \pgfmathparse{veclen(\the\pgf@x,\the\pgf@y)}
+    %% The coordinate system has been changed so that the origin is at the midpoint and
+    %% the line is along the x axis. So shift back by half the length of the line, and 
+    %% make the cylinder of width roughly the length of the line, with a 40pt setback
+    %% on each side.
+    \pgftransformxshift{\pgfmathresult/2-30pt}
+    \pgf@circ@res@left=\dimexpr-\pgfmathresult pt+40pt\relax
+    %% Here is the original function, copied directly from the source of circuittikz, 
+    %% down to next %%
+    \pgf@circ@res@step=.2\pgf@circ@res@right % half x axis
+    \pgfsetlinewidth{\pgfkeysvalueof{/tikz/circuitikz/bipoles/thickness}\pgfstartlinewidth}
+    \pgfpathellipse{\pgfpoint{\pgf@circ@res@right-\pgf@circ@res@step}{0}}
+                   {\pgfpoint{\pgf@circ@res@step}{0}}
+                   {\pgfpoint{0}{-\pgf@circ@res@up}}
+    \pgfpathmoveto{\pgfpoint{\pgf@circ@res@right-\pgf@circ@res@step}{\pgf@circ@res@up}}
+    \pgfpathlineto{\pgfpoint{\pgf@circ@res@left+\pgf@circ@res@step}{\pgf@circ@res@up}}
+    \pgfpatharc{-90}{90}{-\pgf@circ@res@step and -\pgf@circ@res@up}
+    \pgfpathlineto{\pgfpoint{\pgf@circ@res@right-\pgf@circ@res@step}{\pgf@circ@res@down}}
+    %% I have to fill the figure to block out the original line
+    \pgfsetfillcolor{white}
+    \pgfusepath{draw,fill}
+    %% Redraw part of the line that gets blocked by the cylinder by mistake
+    \pgfpathmoveto{\pgfpoint{\pgf@circ@res@right-2*\pgf@circ@res@step}{0pt}}
+    \pgfpathlineto{\pgfpoint{\pgf@circ@res@right}{0pt}}
+    \pgfusepath{draw}
+}
+
+\begin{document}
+
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,-2) grid (10,4);
+    %
+    \draw (0,1) to [twoport, text=TX] ++(1,0)
+                to [short, -o] ++(0.5,0)
+                to [lowpass] ++(2,0)
+                to [short, -o] ++(0,0)
+                to [TL, l={15\,m}] ++(3,0)
+                to [short, -o] ++(0,0)
+                to [short] ++(0.5,0);
+    %
+    \draw [line width=1pt] (7,0.5) rectangle ++(2,1);
+    %
+    \draw (9,1) to [short, -o] ++(0.5,0)
+                to [short] ++(0.5,0) node[antenna]{};
+    %
+    \draw (  4,0.77) node[circ]{} node[ground]{};
+    \draw (5.9,0.77) node[circ]{} node[ground]{};
+    %
+    \draw (8,1.2) node[]{Antennen-};
+    \draw (8,0.8) node[]{tuner};
+    %
+    \draw (1.5,1.3) node[]{1};
+    \draw (3.5,1.3) node[]{2};
+    \draw (6.5,1.3) node[]{3};
+    \draw (9.5,1.3) node[]{4};
+\end{circuitikz}
+\end{document}

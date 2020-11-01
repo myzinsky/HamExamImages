@@ -1,0 +1,25 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\begin{document}
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,-2) grid (4,2);
+    %
+    \draw (0.0, 0.0) node [circ]{};
+    \draw (1.5, 1.5) node [circ]{};
+    \draw (1.5,-1.5) node [circ]{};
+    \draw (3.0, 0.0) node [circ]{};
+    %
+    \draw (-0.3, 0.0) node []{\Large\textasciitilde};
+    \draw ( 1.5, 1.8) node []{\Large+};
+    \draw ( 1.5,-1.8) node []{\Large--};
+    \draw ( 3.3, 0.0) node []{\Large\textasciitilde};
+    %
+    \draw (1.5, 1.5) to [stroke diode] (0.0, 0.0);
+    \draw (1.5, 1.5) to [stroke diode] (3.0, 0.0);
+    \draw (3.0, 0.0) to [stroke diode] (1.5,-1.5);
+    \draw (0.0, 0.0) to [stroke diode] (1.5,-1.5);
+\end{circuitikz}
+\end{document}
