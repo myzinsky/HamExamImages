@@ -10,6 +10,7 @@ all: $(SVGS)
 
 ../build/svg/%.svg: ../build/pdf/%.pdf
 	pdftocairo -svg $< $@
+	svgo $@
 
 ../build/pdf/%.pdf: %.tex 
 	TEXINPUTS=.:../common//: lualatex -output-directory=../build/pdf $< > /dev/null

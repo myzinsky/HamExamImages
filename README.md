@@ -9,6 +9,7 @@ Vorraussetzungen
 - LaTeX
 - pdftocairo
 - make
+- svgo
 
 Generierung der Grafiken
 ========================
