@@ -1,0 +1,42 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+
+\begin{document}
+\ctikzset{%
+}%
+
+\begin{circuitikz}[american]
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (-6,-4) grid (16,4);
+    \draw (0,0) node[transformer, yscale=0.95](T){};
+    %%
+    \draw (T.A1) node [ocirc](I1){};
+    \draw (T.A2) node [ocirc](I2){};
+    \draw (4,1) node[circ](C1){} to [stroke diode] (T.B1);
+    \draw (C1) to [short, -o] ++(1,0);
+    \draw (T-L2.south) to [short, *-o] (5,0);
+    %
+    \draw(C1) to [short] ++(0,-2)
+              to [stroke diode] (T.B2);
+    %
+    \draw(5.68, 0.5) node[]{Ausgang};
+    \draw(5.22,-0.5) node[]{0\,V};
+    %
+    \draw (0,0.5) to [short] (0,-0.5);
+
+    \def\x{0.15}
+    \draw[] (-1.3,0) sin ++(\x, \x)
+                   cos ++(\x,-\x)
+                   sin ++(\x,-\x)
+                   cos ++(\x, \x);
+\end{circuitikz}
+\end{document}
