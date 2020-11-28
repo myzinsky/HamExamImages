@@ -1,0 +1,39 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+
+\begin{document}
+
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,0) grid (8,6);
+    %
+    \ctikzset{tripoles/en amp/input height=0.45}
+    \draw (4,3) node[en amp](E){};
+    %(E.out) node[right] {$v_{\mathrm{out}}$} 
+
+    \draw (0,0) to [short, o-o] ++(6,0);
+    \draw (E.+) to [short] ++(0,-2.5) node [circ](C1){};
+    \draw (C1) node[ground] (gnd2) {};
+    %
+    \draw(E.-) to [R, -o] (0,3.5);
+    \draw (1.5,4.0) node {$\mbox{R}_{\mbox{1}}$};
+    \draw (-0.3,3.5) node {E};
+    %
+    \draw (2.8,3.5) node [circ](C2){}
+          to [short] (2.8, 5)
+          to [R] ++ (2.5,0)
+          to [short, -*] ++ (0,-2);
+    \draw (4,5.5) node {$\mbox{R}_{\mbox{2}}$};
+    %
+    \draw (E.out) to [short, -o] (6,3);
+    \draw (6.3,3) node {A};
+    %
+    \draw (0,3) to [short] (0,0.5) node [currarrow, rotate=-90]{};
+    \draw (6,2.5) to [short] (6,0.5) node [currarrow, rotate=-90]{};
+    %
+    \draw (-0.4,1.75) node {$\mbox{U}_{\mbox{E}}$};
+    \draw ( 6.4, 1.5) node {$\mbox{U}_{\mbox{A}}$};
+\end{circuitikz}
+\end{document}
