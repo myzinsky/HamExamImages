@@ -29,7 +29,12 @@
     %
     \draw (6.5,-0.25) node[transformer, yscale=1.6666666](T){};
     %
-    \draw(-1.5,0) node[]{\Large\textasciitilde 230\,V};
+    \def\x{0.15}
+    \draw (-1.8,-0.25) sin ++(\x, \x)
+                       cos ++(\x,-\x)
+                       sin ++(\x,-\x)
+                       cos ++(\x, \x);
+    \draw(-1.5,0.25) node[]{\large 230\,V};
 
     \draw(C4) |- ++(0.5,1.5) to [normal open switch] (T.A1);
     %\draw(T.B2) -| (C3);
