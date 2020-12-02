@@ -1,0 +1,57 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\begin{document}
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,0) grid (8,6);
+    \draw[ultra thick] (0,2) sin ++(4, 3)
+                             cos ++(4,-3);
+    \draw[ultra thick] (0,2) sin ++(2, 1.5)
+                             cos ++(2,-1.5) 
+                             sin ++(2,-1.5)
+                             cos ++(2, 1.5);
+    \draw[ultra thick] (0,2) sin ++(1, 0.75)
+                             cos ++(1,-0.75) 
+                             sin ++(1,-0.75)
+                             cos ++(1, 0.75)
+                             sin ++(1, 0.75)                            
+                             cos ++(1,-0.75)
+                             sin ++(1,-0.75)
+                             cos ++(1, 0.75);
+
+    \draw[ultra thick] (0,2) sin ++(0.5, 0.35)
+                             cos ++(0.5,-0.35) 
+                             sin ++(0.5,-0.35)
+                             cos ++(0.5, 0.35)
+                             sin ++(0.5, 0.35)                            
+                             cos ++(0.5,-0.35)
+                             sin ++(0.5,-0.35)
+                             cos ++(0.5, 0.35)
+                             sin ++(0.5, 0.35)
+                             cos ++(0.5,-0.35) 
+                             sin ++(0.5,-0.35)
+                             cos ++(0.5, 0.35)
+                             sin ++(0.5, 0.35)                            
+                             cos ++(0.5,-0.35)
+                             sin ++(0.5,-0.35)
+                             cos ++(0.5, 0.35);
+
+    \draw[ultra thick] (0,2) to [short] ++( 3.9,   0)
+                             to [short] ++(   0,-0.8);
+    \draw[ultra thick] (8,2) to [short] ++(-3.9,   0)
+                             to [short] ++(   0,-0.8);
+
+    \draw (0,2) to [short] ++ (0,-2);
+    \draw (8,2) to [short] ++ (0,-2);
+    \draw (0.1, 0) node[inputarrow, rotate=180]{} -- (7.9,0.0) node[inputarrow]{};
+    \draw (4,-0.3) node[]{40\,m};
+    %
+    \draw (6.8,3.8) node[]{D};
+    \draw (3.3,3.3) node[]{C};
+    \draw (2.5,1.1) node[]{B};
+    \draw (1.2,1.5) node[]{A};
+\end{circuitikz}
+\end{document}
