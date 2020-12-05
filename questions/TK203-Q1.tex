@@ -1,0 +1,14 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\begin{document}
+\begin{circuitikz}
+    \draw[ultra thick] (0,0) -- ++(11,0);
+    \draw[fill=gray!50, ultra thick] (1,-1) rectangle ( 2,1);
+    \draw[fill=gray!50, ultra thick] (3,-1) rectangle ( 6,1);
+    \draw[fill=gray!50, ultra thick] (7,-1) rectangle ( 8,1);
+    \draw[fill=gray!50, ultra thick] (9,-1) rectangle (10,1);
+\end{circuitikz}
+\end{document}

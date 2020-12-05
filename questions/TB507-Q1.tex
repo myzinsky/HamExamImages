@@ -1,0 +1,45 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\usetikzlibrary{patterns}
+%
+\begin{document}
+\begin{circuitikz}
+    \draw[double=none,
+    double distance=10pt,
+    line join=round,
+    line cap=round,
+    draw=black](4.7,4) -- (4.7,7);
+    %
+    \draw[] (0,0) -- ++(8,0);
+    \draw[pattern=north west lines, pattern color=black, draw=none]
+         (0,0) rectangle (8,-0.2);
+    \draw[](3.8,0) rectangle (4.2,5);
+    %
+    \draw[](3.8,1) -- (4.2,1);
+    \draw[](3.8,2) -- (4.2,2);
+    \draw[](3.8,3) -- (4.2,3);
+    \draw[](3.8,4) -- (4.2,4);
+    %
+    \draw[](3.8,1) -- (4.2,0);
+    \draw[](3.8,2) -- (4.2,1);
+    \draw[](3.8,3) -- (4.2,2);
+    \draw[](3.8,4) -- (4.2,3);
+    \draw[](3.8,5) -- (4.2,4);
+    %
+    \draw[](4.0,5) -- (4.0,5.5);
+    %
+    \draw[](1.5,5.5) -- (6.5,5.5);
+    %
+    \draw[](1.5,4) -- (1.5,7.0);
+    \draw[](2.5,4) -- (2.5,7.0);
+    \draw[](3.5,4) -- (3.5,7.0);
+    %
+    \draw[](6.5,3.5) -- (6.5,7.5);
+    %
+    \draw[fill=black](4.425,5.6) rectangle (4.625,5.4);
+    %
+\end{circuitikz}
+\end{document}
