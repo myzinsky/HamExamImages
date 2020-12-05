@@ -1,0 +1,38 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{tikz,pgfplots}
+\usepgfplotslibrary{fillbetween}
+
+\begin{document} 
+\begin{tikzpicture}
+    \pgfplotsset{samples=200}
+    \begin{axis}[
+        width=8cm,
+        height=4cm,
+        axis lines=none,
+        ticks=none,
+        xmin =  0,
+        ymin = -1.4,
+        xmax =  10,
+        ymax =  1.4,
+        domain = 0:10,
+        thick,
+        smooth,
+        no markers]
+        \addplot+[solid, name path=X,ultra thick, black, domain=0:3]
+        { 0};
+        \addplot+[name path=C,ultra thick, black, domain=3:7]
+        { 1.325};
+        \addplot+[solid, name path=D,ultra thick, black, domain=3:7]
+        {-1.325};
+        \addplot[gray, opacity=0.5, domain=3:4] fill between[of=C and D];
+        \addplot+[solid, name path=X,ultra thick, black, domain=7:10]
+        { 0};
+    \end{axis}
+    \draw[ultra thick](4.465,0.07) -- (4.465,2.35);
+    \draw[ultra thick](1.955,0.07) -- (1.955,2.35);
+\end{tikzpicture}
+\end{document}
+
