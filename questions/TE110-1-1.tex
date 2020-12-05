@@ -1,0 +1,32 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{tikz,pgfplots}
+\usepgfplotslibrary{fillbetween}
+
+\begin{document} 
+\begin{tikzpicture}
+    \pgfplotsset{samples=200}
+    \begin{axis}[
+        width=8cm,
+        height=6cm,
+        axis lines=none,
+        ticks=none,
+        xmin =  0,
+        ymin = -2.2,
+        xmax =  8.8,
+        ymax =  2.2,
+        domain = 0:8.8,
+        thick,
+        smooth,
+        no markers]
+        \addplot+[name path=A,ultra thick, black]
+        { 1*sin(deg(x*1.75)-180)+1.0};
+        \addplot+[name path=B,ultra thick, black]
+        {-1*sin(deg(x*1.75)-180)-1.0};
+        \addplot[gray, opacity=0.5] fill between[of=A and B];
+    \end{axis}
+    %\node[rotate=90] at (-0.5,5) {3\,V/Div.};
+\end{tikzpicture}
+\end{document}
