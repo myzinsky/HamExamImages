@@ -1,0 +1,277 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{ifthen}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\pgfkeys{
+  /sevenseg/.is family, /sevenseg,
+  slant/.estore in      = \sevensegSlant,     % vertical slant in degrees
+  size/.estore in       = \sevensegSize,      % length of a segment
+  shrink/.estore in     = \sevensegShrink,    % avoids overlapping of segments
+  line width/.estore in = \sevensegLinewidth, % thickness of the segments
+  line cap/.estore in   = \sevensegLinecap,   % end cap style rect, round, butt
+  oncolor/.estore in    = \sevensegOncolor,   % color of an ON segment
+  offcolor/.estore in   = \sevensegOffcolor,  % color of an OFF segment
+}
+
+\pgfkeys{
+  /sevenseg,
+  default/.style = {slant = 0, size = 1em, shrink = 0.1, 
+                    line width = 0.15em, line cap = butt, 
+                    oncolor = black, offcolor = gray}
+}
+
+
+%===============================================
+%                     a b c d e f g - segment values
+% \sevenseg[options]{{1,1,1,1,1,1,0,}}
+%
+\newcommand{\sevenseg}[2][]% options values
+{%
+\pgfkeys{/sevenseg, default, #1}%
+\def\sevensegarray{#2}%
+  \begin{tikzpicture}%
+      \draw(-0.15,-0.1) rectangle (0.5,0.85);
+      \draw[text=white](0.2,1.1) node[](){X};
+    % first define the position of the 6 corner points
+    \path (0,0) ++(0,0)                             coordinate (P1);
+    \path (0,0) ++(\sevensegSize,0)                 coordinate (P2);
+    \path (0,0) ++(90-\sevensegSlant:\sevensegSize) coordinate (P3);
+    \path (P2)  ++(90-\sevensegSlant:\sevensegSize) coordinate (P4);
+    \path (P3)  ++(90-\sevensegSlant:\sevensegSize) coordinate (P5);
+    \path (P4)  ++(90-\sevensegSlant:\sevensegSize) coordinate (P6);
+    
+    \ifthenelse{\equal{#1}{5}}{%
+        \filldraw(0.425,0) circle(0.04);
+        }{}
+
+    % then step through the 1/0 values in the segment array
+    \foreach \i in {0,...,6}%
+    {
+      \pgfmathparse{\sevensegarray[\i]}
+      \ifthenelse{\equal{\pgfmathresult}{1}}%
+        {\let\mycolor=\sevensegOncolor}%  segment is on
+        {\let\mycolor=\sevensegOffcolor}% segment is off
+      \tikzstyle{segstyle} = [draw=\mycolor, line width = \sevensegLinewidth,
+                              line cap = \sevensegLinecap]
+      %-----------------------
+      \ifthenelse{\equal{\i}{0}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P5)+\sevensegShrink*(P6)$) 
+        -- ($\sevensegShrink*(P5)+{1-\sevensegShrink}*(P6)$);}{} % a
+      \ifthenelse{\equal{\i}{1}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P6)+\sevensegShrink*(P4)$) 
+        -- ($\sevensegShrink*(P6)+{1-\sevensegShrink}*(P4)$);}{} % b
+      \ifthenelse{\equal{\i}{2}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P4)+\sevensegShrink*(P2)$) 
+        -- ($\sevensegShrink*(P4)+{1-\sevensegShrink}*(P2)$);}{} % c
+      \ifthenelse{\equal{\i}{3}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P1)+\sevensegShrink*(P2)$) 
+        -- ($\sevensegShrink*(P1)+{1-\sevensegShrink}*(P2)$);}{} % d
+      \ifthenelse{\equal{\i}{4}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P1)+\sevensegShrink*(P3)$) 
+        -- ($\sevensegShrink*(P1)+{1-\sevensegShrink}*(P3)$);}{} % e
+      \ifthenelse{\equal{\i}{5}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P3)+\sevensegShrink*(P5)$) 
+        -- ($\sevensegShrink*(P3)+{1-\sevensegShrink}*(P5)$);}{} % f
+      \ifthenelse{\equal{\i}{6}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P3)+\sevensegShrink*(P4)$) 
+        -- ($\sevensegShrink*(P3)+{1-\sevensegShrink}*(P4)$);}{} % g
+    }
+  \end{tikzpicture}%
+}
+
+%===============================================
+%                     a b c d e f g - segment values
+% \sevendot[options]{{1,1,1,1,1,1,0,}}
+%
+\newcommand{\sevendot}[2][]% options values
+{%
+\pgfkeys{/sevenseg, default, #1}%
+\def\sevensegarray{#2}%
+  \begin{tikzpicture}%
+      \draw(-0.15,-0.1) rectangle (0.5,0.85);
+    % first define the position of the 6 corner points
+    \path (0,0) ++(0,0)                             coordinate (P1);
+    \path (0,0) ++(\sevensegSize,0)                 coordinate (P2);
+    \path (0,0) ++(90-\sevensegSlant:\sevensegSize) coordinate (P3);
+    \path (P2)  ++(90-\sevensegSlant:\sevensegSize) coordinate (P4);
+    \path (P3)  ++(90-\sevensegSlant:\sevensegSize) coordinate (P5);
+    \path (P4)  ++(90-\sevensegSlant:\sevensegSize) coordinate (P6);
+    \filldraw(0.425,0) circle(0.04);
+
+    % then step through the 1/0 values in the segment array
+    \foreach \i in {0,...,6}%
+    {
+      \pgfmathparse{\sevensegarray[\i]}
+      \ifthenelse{\equal{\pgfmathresult}{1}}%
+        {\let\mycolor=\sevensegOncolor}%  segment is on
+        {\let\mycolor=\sevensegOffcolor}% segment is off
+      \tikzstyle{segstyle} = [draw=\mycolor, line width = \sevensegLinewidth,
+                              line cap = \sevensegLinecap]
+      %-----------------------
+      \ifthenelse{\equal{\i}{0}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P5)+\sevensegShrink*(P6)$) 
+        -- ($\sevensegShrink*(P5)+{1-\sevensegShrink}*(P6)$);}{} % a
+      \ifthenelse{\equal{\i}{1}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P6)+\sevensegShrink*(P4)$) 
+        -- ($\sevensegShrink*(P6)+{1-\sevensegShrink}*(P4)$);}{} % b
+      \ifthenelse{\equal{\i}{2}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P4)+\sevensegShrink*(P2)$) 
+        -- ($\sevensegShrink*(P4)+{1-\sevensegShrink}*(P2)$);}{} % c
+      \ifthenelse{\equal{\i}{3}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P1)+\sevensegShrink*(P2)$) 
+        -- ($\sevensegShrink*(P1)+{1-\sevensegShrink}*(P2)$);}{} % d
+      \ifthenelse{\equal{\i}{4}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P1)+\sevensegShrink*(P3)$) 
+        -- ($\sevensegShrink*(P1)+{1-\sevensegShrink}*(P3)$);}{} % e
+      \ifthenelse{\equal{\i}{5}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P3)+\sevensegShrink*(P5)$) 
+        -- ($\sevensegShrink*(P3)+{1-\sevensegShrink}*(P5)$);}{} % f
+      \ifthenelse{\equal{\i}{6}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P3)+\sevensegShrink*(P4)$) 
+        -- ($\sevensegShrink*(P3)+{1-\sevensegShrink}*(P4)$);}{} % g
+    }
+  \end{tikzpicture}%
+}
+
+\newcommand{\sevenxxx}[2][]% options values
+{%
+\pgfkeys{/sevenseg, default, #1}%
+\def\sevensegarray{#2}%
+  \begin{tikzpicture}%
+      \draw(-0.15,-0.1) rectangle (0.5,0.85);
+      \draw[text=black](0.2,1.1) node[](){X};
+    % first define the position of the 6 corner points
+    \path (0,0) ++(0,0)                             coordinate (P1);
+    \path (0,0) ++(\sevensegSize,0)                 coordinate (P2);
+    \path (0,0) ++(90-\sevensegSlant:\sevensegSize) coordinate (P3);
+    \path (P2)  ++(90-\sevensegSlant:\sevensegSize) coordinate (P4);
+    \path (P3)  ++(90-\sevensegSlant:\sevensegSize) coordinate (P5);
+    \path (P4)  ++(90-\sevensegSlant:\sevensegSize) coordinate (P6);
+    
+    \ifthenelse{\equal{#1}{5}}{%
+        \filldraw(0.425,0) circle(0.04);
+        }{}
+
+    % then step through the 1/0 values in the segment array
+    \foreach \i in {0,...,6}%
+    {
+      \pgfmathparse{\sevensegarray[\i]}
+      \ifthenelse{\equal{\pgfmathresult}{1}}%
+        {\let\mycolor=\sevensegOncolor}%  segment is on
+        {\let\mycolor=\sevensegOffcolor}% segment is off
+      \tikzstyle{segstyle} = [draw=\mycolor, line width = \sevensegLinewidth,
+                              line cap = \sevensegLinecap]
+      %-----------------------
+      \ifthenelse{\equal{\i}{0}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P5)+\sevensegShrink*(P6)$) 
+        -- ($\sevensegShrink*(P5)+{1-\sevensegShrink}*(P6)$);}{} % a
+      \ifthenelse{\equal{\i}{1}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P6)+\sevensegShrink*(P4)$) 
+        -- ($\sevensegShrink*(P6)+{1-\sevensegShrink}*(P4)$);}{} % b
+      \ifthenelse{\equal{\i}{2}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P4)+\sevensegShrink*(P2)$) 
+        -- ($\sevensegShrink*(P4)+{1-\sevensegShrink}*(P2)$);}{} % c
+      \ifthenelse{\equal{\i}{3}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P1)+\sevensegShrink*(P2)$) 
+        -- ($\sevensegShrink*(P1)+{1-\sevensegShrink}*(P2)$);}{} % d
+      \ifthenelse{\equal{\i}{4}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P1)+\sevensegShrink*(P3)$) 
+        -- ($\sevensegShrink*(P1)+{1-\sevensegShrink}*(P3)$);}{} % e
+      \ifthenelse{\equal{\i}{5}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P3)+\sevensegShrink*(P5)$) 
+        -- ($\sevensegShrink*(P3)+{1-\sevensegShrink}*(P5)$);}{} % f
+      \ifthenelse{\equal{\i}{6}}{\path[segstyle] 
+        (${1-\sevensegShrink}*(P3)+\sevensegShrink*(P4)$) 
+        -- ($\sevensegShrink*(P3)+{1-\sevensegShrink}*(P4)$);}{} % g
+    }
+  \end{tikzpicture}%
+}
+
+\newcommand{\sevensegnum}[2][]% sample characvters
+{%                                          
+  \ifthenelse{\equal{#2}{0}}{\sevenseg[#1]{{1,1,1,1,1,1,0,}}}{%
+  \ifthenelse{\equal{#2}{1}}{\sevenseg[#1]{{0,1,1,0,0,0,0,}}}{%
+  \ifthenelse{\equal{#2}{2}}{\sevenseg[#1]{{1,1,0,1,1,0,1,}}}{%
+  \ifthenelse{\equal{#2}{3}}{\sevenseg[#1]{{1,1,1,1,0,0,1,}}}{%
+  \ifthenelse{\equal{#2}{4}}{\sevenseg[#1]{{0,1,1,0,0,1,1,}}}{%
+  \ifthenelse{\equal{#2}{5}}{\sevenseg[#1]{{1,0,1,1,0,1,1,}}}{%
+  \ifthenelse{\equal{#2}{6}}{\sevenseg[#1]{{1,0,1,1,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{7}}{\sevenseg[#1]{{1,1,1,0,0,0,0,}}}{%
+  \ifthenelse{\equal{#2}{8}}{\sevenseg[#1]{{1,1,1,1,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{9}}{\sevenseg[#1]{{1,1,1,1,0,1,1,}}}{%
+  \ifthenelse{\equal{#2}{A}}{\sevenseg[#1]{{1,1,1,0,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{B}}{\sevenseg[#1]{{0,0,1,1,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{C}}{\sevenseg[#1]{{0,0,0,1,1,0,1,}}}{%
+  \ifthenelse{\equal{#2}{D}}{\sevenseg[#1]{{0,1,1,1,1,0,1,}}}{%
+  \ifthenelse{\equal{#2}{E}}{\sevenseg[#1]{{1,0,0,1,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{F}}{\sevenseg[#1]{{1,0,0,0,1,1,1,}}}{%
+  {\sevenseg[#1]{{0,0,0,0,0,0,0,}}}}}}}}}}}}}}}}}}}%
+}
+
+\newcommand{\sevensegdot}[2][]% sample characvters
+{%                                          
+  \ifthenelse{\equal{#2}{0}}{\sevendot[#1]{{1,1,1,1,1,1,0,}}}{%
+  \ifthenelse{\equal{#2}{1}}{\sevendot[#1]{{0,1,1,0,0,0,0,}}}{%
+  \ifthenelse{\equal{#2}{2}}{\sevendot[#1]{{1,1,0,1,1,0,1,}}}{%
+  \ifthenelse{\equal{#2}{3}}{\sevendot[#1]{{1,1,1,1,0,0,1,}}}{%
+  \ifthenelse{\equal{#2}{4}}{\sevendot[#1]{{0,1,1,0,0,1,1,}}}{%
+  \ifthenelse{\equal{#2}{5}}{\sevendot[#1]{{1,0,1,1,0,1,1,}}}{%
+  \ifthenelse{\equal{#2}{6}}{\sevendot[#1]{{1,0,1,1,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{7}}{\sevendot[#1]{{1,1,1,0,0,0,0,}}}{%
+  \ifthenelse{\equal{#2}{8}}{\sevendot[#1]{{1,1,1,1,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{9}}{\sevendot[#1]{{1,1,1,1,0,1,1,}}}{%
+  \ifthenelse{\equal{#2}{A}}{\sevendot[#1]{{1,1,1,0,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{B}}{\sevendot[#1]{{0,0,1,1,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{C}}{\sevendot[#1]{{0,0,0,1,1,0,1,}}}{%
+  \ifthenelse{\equal{#2}{D}}{\sevendot[#1]{{0,1,1,1,1,0,1,}}}{%
+  \ifthenelse{\equal{#2}{E}}{\sevendot[#1]{{1,0,0,1,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{F}}{\sevendot[#1]{{1,0,0,0,1,1,1,}}}{%
+  {\sevendot[#1]{{0,0,0,0,0,0,0,}}}}}}}}}}}}}}}}}}}%
+}
+
+\newcommand{\sevensegxxx}[2][]% sample characvters
+{%                                          
+  \ifthenelse{\equal{#2}{0}}{\sevenxxx[#1]{{1,1,1,1,1,1,0,}}}{%
+  \ifthenelse{\equal{#2}{1}}{\sevenxxx[#1]{{0,1,1,0,0,0,0,}}}{%
+  \ifthenelse{\equal{#2}{2}}{\sevenxxx[#1]{{1,1,0,1,1,0,1,}}}{%
+  \ifthenelse{\equal{#2}{3}}{\sevenxxx[#1]{{1,1,1,1,0,0,1,}}}{%
+  \ifthenelse{\equal{#2}{4}}{\sevenxxx[#1]{{0,1,1,0,0,1,1,}}}{%
+  \ifthenelse{\equal{#2}{5}}{\sevenxxx[#1]{{1,0,1,1,0,1,1,}}}{%
+  \ifthenelse{\equal{#2}{6}}{\sevenxxx[#1]{{1,0,1,1,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{7}}{\sevenxxx[#1]{{1,1,1,0,0,0,0,}}}{%
+  \ifthenelse{\equal{#2}{8}}{\sevenxxx[#1]{{1,1,1,1,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{9}}{\sevenxxx[#1]{{1,1,1,1,0,1,1,}}}{%
+  \ifthenelse{\equal{#2}{A}}{\sevenxxx[#1]{{1,1,1,0,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{B}}{\sevenxxx[#1]{{0,0,1,1,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{C}}{\sevenxxx[#1]{{0,0,0,1,1,0,1,}}}{%
+  \ifthenelse{\equal{#2}{D}}{\sevenxxx[#1]{{0,1,1,1,1,0,1,}}}{%
+  \ifthenelse{\equal{#2}{E}}{\sevenxxx[#1]{{1,0,0,1,1,1,1,}}}{%
+  \ifthenelse{\equal{#2}{F}}{\sevenxxx[#1]{{1,0,0,0,1,1,1,}}}{%
+  {\sevenxxx[#1]{{0,0,0,0,0,0,0,}}}}}}}}}}}}}}}}}}}%
+}
+
+\newcommand{\sevenmhz}[2][]% options values
+{%
+\pgfkeys{/sevenseg, default, #1}%
+\def\sevensegarray{#2}%
+  \begin{tikzpicture}%
+      \draw(-0.15,-0.1) rectangle (0.45,0.85);
+      \draw(0.15,0.35) node[](){\tiny MHz};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+    \sevensegnum[offcolor=white]{1}%
+    \sevensegnum[offcolor=white]{4}%
+    \sevensegdot[offcolor=white]{5}%
+    \sevensegnum[offcolor=white]{0}%
+    \sevensegnum[offcolor=white]{0}%
+    \sevensegnum[offcolor=white]{1}%
+    \sevensegnum[offcolor=white]{3}%
+    \sevensegxxx[offcolor=white]{7}%
+    \sevenmhz[offcolor=white]{~}%
+\end{document}
