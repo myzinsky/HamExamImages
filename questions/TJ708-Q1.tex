@@ -1,0 +1,50 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+
+\begin{document}
+
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,0) grid (14,14);
+    %
+    %
+    \draw (-0.5,10) node[](){E};
+    \draw (0,10) node[bnc](B1){} to [short] ++(7,0);
+    \draw (2,10)  to [R,l_=$150\,\Omega$,*-]     ++(0,-2)
+                  to [R,l_=$150\,\Omega$]     ++(0,-2)
+                  to [R,l_=$150\,\Omega$]     ++(0,-2)
+                  to [R,l_=$150\,\Omega$]     ++(0,-2)
+                  to [short, -*] ++(0,-0.5);
+    \draw (4,10)  to [R,l_=$150\,\Omega$,*-]     ++(0,-2)
+                  to [R,l_=$150\,\Omega$]     ++(0,-2)
+                  to [R,l_=$150\,\Omega$]     ++(0,-2)
+                  to [R,l_=$150\,\Omega$]     ++(0,-2)
+                  to [short, -*] ++(0,-0.5);
+    \draw (6,10)  to [R,l_=$150\,\Omega$,*-]     ++(0,-2)
+                  to [R,l_=$150\,\Omega$]     ++(0,-2)
+                  to [R,l_=$150\,\Omega$]     ++(0,-2)
+                  to [R,l_=$150\,\Omega$]     ++(0,-2)
+                  to [short, -*] ++(0,-0.5);
+    \draw (10,10) to [R,l_=$150\,\Omega$]     ++(0,-2)
+                  to [R,l_=$150\,\Omega$]     ++(0,-2)
+                  to [R,l_=$150\,\Omega$]     ++(0,-2)
+                  to [R,l_=$150\,\Omega$]     ++(0,-2)
+                  to [short] ++(0,-0.5);
+    \draw (B1.shield) to [short] ++(0,-8.36)
+                      to [short] (7,1.5);
+    \draw (7,1.5) edge[dashed] ++(2,0);
+    \draw (7,10 ) edge[dashed] ++(2,0);
+    \draw (9,1.5) to [short] ++(1,0);
+    \draw (9,10 ) to [short] ++(1,0);
+    %            
+\end{circuitikz}
+\end{document}
