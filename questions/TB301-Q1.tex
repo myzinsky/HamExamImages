@@ -77,6 +77,112 @@
       {cos(t)*1.1*t},
       {2000}
     );
+    %\addplot3 [ % Rand oben
+    %  surf,
+    %  domain=0:3*352,
+    %  samples=200,
+    %  y domain=0:2000,
+    %  samples y=2,
+    %  shader=faceted,
+    %  variable=\t,
+    %  faceted color=red,
+    %  dashed
+    %]
+    %( 
+    %  {sin(t)*1.02*(t)},
+    %  {cos(t)*1.02*t},
+    %  {1630}
+    %);
+    \addplot3 [ % Element für Metallbelag
+      surf,
+      domain=976:1019,
+      samples=200,
+      y domain=0:2000,
+      samples y=2,
+      shader=faceted,
+      variable=\t,
+      faceted color=black,
+    ]
+    ( 
+      {sin(t)*1.02*(t)},
+      {cos(t)*1.02*t},
+      {1630}
+    );
+    \addplot3 [ % Element für Metallbelag 2
+      surf,
+      domain=626:670,
+      samples=200,
+      y domain=0:2000,
+      samples y=2,
+      shader=faceted,
+      variable=\t,
+      faceted color=black,
+    ]
+    ( 
+      {sin(t)*1.02*(t)},
+      {cos(t)*1.02*t},
+      {1630}
+    );
+    \addplot3 [ % Element für Metallbelag 3
+      surf,
+      domain=723:768,
+      samples=200,
+      y domain=0:2000,
+      samples y=2,
+      shader=faceted,
+      variable=\t,
+      faceted color=black,
+    ]
+    ( 
+      {sin(t)*1.02*(t)},
+      {cos(t)*1.02*t},
+      {1630}
+    );
+    \addplot3 [ % Element für Metallbelag 4
+      surf,
+      domain=308:330,
+      samples=200,
+      y domain=0:2000,
+      samples y=2,
+      shader=faceted,
+      variable=\t,
+      faceted color=black,
+    ]
+    ( 
+      {sin(t)*1.02*(t)},
+      {cos(t)*1.02*t},
+      {1630}
+    );
+    \addplot3 [ % Element für Metallbelag 5
+      surf,
+      domain=340:397,
+      samples=200,
+      y domain=0:2000,
+      samples y=2,
+      shader=faceted,
+      variable=\t,
+      faceted color=black,
+    ]
+    ( 
+      {sin(t)*1.02*(t)},
+      {cos(t)*1.02*t},
+      {1630}
+    );
+    \addplot3 [ % Rand oben
+      surf,
+      domain=0:3*352,
+      samples=200,
+      y domain=0:2000,
+      samples y=2,
+      shader=faceted,
+      variable=\t,
+      faceted color=black,
+    ]
+    ( 
+      {sin(t)*1.02*(t)},
+      {cos(t)*1.02*t},
+      {2000}
+    );
     \addplot3 [ % Unten
       surf,
       domain=790:3*320,
@@ -97,20 +203,21 @@
   \draw(0.603,1.56) -- (0.603,4);
   \draw(3.603,1.40) -- (3.603,3.8);
   %
-  \draw(1.220,3.210) -- (1.220,4.010);
-  \draw(2.990,3.165) -- (2.990,3.940);
+  \draw(1.220,3.305) -- (1.220,4.010);
+  \draw(2.990,3.235) -- (2.990,3.940);
   %
-  \draw(1.835,3.427) -- (1.835,4.010);
-  \draw(2.394,3.420) -- (2.394,3.920);
+  \draw(1.835,3.477) -- (1.835,4.010);
+  \draw(2.394,3.450) -- (2.394,3.920);
   %
   \draw(2.265,3.800) -- (2.265,3.972);
   %
   \draw(2.415,5.127) -- (8,5.127) -- (8,2) -- (3.603,2);
+  \draw(2.415,5.043) -- (6.5,5.043);
   %
   \draw(6.55,4.60) -- (7.5,4.6) -- (7.5,2.5) -- (6.46,2.5);
   %
   \pgfmathsetseed{43} % Um die Form gleich zu halten
-  \draw[pencildraw](6.5,5.127) -- (6.5,2); 
+  \draw[pencildraw](6.5,5.043) -- (6.5,2); 
   %
   \draw(4.25,0.5) node[](){Wickel};
   \draw(5.5,5.7) node[](){Metallbeläge};
