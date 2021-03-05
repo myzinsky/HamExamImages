@@ -1,0 +1,34 @@
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amssymb}
+
+\begin{document}
+\begin{circuitikz}[scale=0.5, transform shape,american,
+longL/.style = {L, inductors/width=1, inductors/coils=4},
+shortL/.style = {L, inductors/coils=2,inductors/width=0.5}]
+    \draw (-1,0) to [short,i=NF] (0,0) to [C,-*,l=$C_1$] (2,0)
+    to [C,l=$C_2$] (2,-4) node[rground]{};
+    \draw (2,0) to [stroke diode,-*] (4,-2)
+    to [stroke diode,-*] (6,0)
+    to [stroke diode,-*] (4,2)
+    to [stroke diode] (2,0);
+    \draw (4,2) -- (4,3) -- (10,3) to [C,l=$C_3$,*-] (10,4);
+    \draw (9.8,4) -- (10.2,4);
+    \draw (6,0) -- (6,-4) node[rground]{};
+    \draw (4,-2) -- (4,-3) -- (10,-3);
+    \draw (10,-4) node[rground]{} to [variable capacitor,-*] (10,-3);
+    \draw (8,-3) to [european resistor,*-] (8,-1)
+    to [tgeneric,l=P] (8,1)
+    to [european resistor, -*] (8,3);
+    \draw (7.5,-4.4) to [short,i=$f_{osz}$] (7.5,-4) -- (7.5,-0.27);
+    \draw (10,3) to [longL] (10,-3);
+    \draw (10,2) to [short, *-] (9,2)
+    to [C,l=$C_5$] (9,-2)
+    to [short,-*] (10,-2);
+    \draw[densely dashed] (10.5,0.7) -- (10.5,-0.7);
+    \draw (9.5,-0.5) -- (10.6,0.5);
+    \draw (10.4,0.7) -- (10.8,0.3);
+    \draw (11,-4) node[rground]{} -- (11,-1.5)
+    to [shortL] (11,1) to [short,i=Pufferstufe] (12,1);
+\end{circuitikz}
+\end{document}

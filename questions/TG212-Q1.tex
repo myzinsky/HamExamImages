@@ -1,0 +1,20 @@
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amssymb}
+
+\begin{document}
+\begin{circuitikz}[american, shortL/.style = {L, inductors/coils=3}]
+    \draw (0,0) -- (1,0) node[currarrow]{} -- (8,0) node[currarrow]{};
+    \draw (0,2) -- (1,2) node[currarrow]{}
+    to [shortL] (3,2)
+    to [C] (4,2)
+    to [C] (6,2) -- (8,2) node[currarrow]{};
+    \draw (4.25,0) to [varcap,*-*] (4.25,2)
+    -- (4.25,3) -- (6,3) to [european resistor] (8,3) node[currarrow]{} node[anchor=west]{$+$};
+    \draw (6,0) to [variable capacitor,*-*] (6,2);
+    \draw (7,0) to [L,*-*,mirror] (7,2);
+    \draw[densely dashed] (1.5,2.3) -- (2.5,2.3);
+    \draw (0,1) node[]{NF/Basisband};
+    \draw (9,1) node[]{zum Oszillator};
+\end{circuitikz}
+\end{document}

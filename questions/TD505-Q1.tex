@@ -1,0 +1,18 @@
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amssymb}
+
+\begin{document}
+\begin{circuitikz}[scale=.55,transform shape,american]
+    \draw (0,2) node[currarrow]{} node[anchor=south]{ZF} to [european resistor] (2,2) --++ (4,0) to [stroke diode] ++ (2,0) --++ (2,0) to [C] ++ (2,0) node[anchor=south]{NF} node[currarrow]{};
+    \draw (2,0) node[rground]{} --++ (8,0);
+    \draw (2,2) to [european resistor,*-*] (2,0);
+    \draw (4,2) to [L,*-*,mirror] (4,0);
+    \draw [densely dashed] (3.7,1.6) -- (3.7,0.4);
+    \draw (3.4,0.4) -- (4.5,1.5);
+    \draw (4.4,1.6) -- (4.6,1.4);
+    \draw (6,2) to [C,*-*] (6,0);
+    \draw (8,2) to [C,*-*] (8,0);
+    \draw (10,2) to [european resistor,*-] (10,0);
+\end{circuitikz}
+\end{document}

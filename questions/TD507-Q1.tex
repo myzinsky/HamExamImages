@@ -1,0 +1,35 @@
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amssymb}
+
+\begin{document}
+\begin{circuitikz}[scale=.6,transform shape,american,
+longL/.style = {L, inductors/width=2, inductors/coils=6},
+shortL/.style = {L, inductors/coils=3}]
+    \draw[densely dashed] (2.5,3.5) -- (2.5,0.5);
+    \draw (1,0) node[rground]{} to [short] (2,0)
+    to [longL,mirror] (2,4)
+    to [short] (1,4)
+    to [short, i_<=ZF] (0,4);
+    \draw (1,0) to [variable capacitor,*-*] (1,4);
+    \draw (1,4) to [short, *-] (1,5)
+    to [C] (4,5)
+    to [short, -*] (4,2);
+    \draw (3,0) to [shortL] (3,2)
+    to [shortL] (3,4) -- (5,4)
+    to [stroke diode] (7,4) to [short,-o] (9,4)
+    to [C, i=NF] (11,4);
+    \draw (3,0) to [short] (5,0)
+    to [stroke diode] (7,0)
+    to [short] (9,0);
+    \draw (3,2) -- (5,2)
+    to [european resistor] (7,2) 
+    to [short, *-] (9,2);
+    \draw (5,0) to [short,*-] (5,2)
+    to [variable capacitor,-*] (5,4);
+    \draw (7,0) to [european resistor,*-*] (7,2)
+    to [european resistor,*-*] (7,4);
+    \draw (9,0) node[rground]{} to [C,*-*] (9,2)
+    to [C,*-*] (9,4);
+\end{circuitikz}
+\end{document}

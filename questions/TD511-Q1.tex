@@ -1,0 +1,32 @@
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amssymb}
+
+\begin{document}
+\begin{circuitikz}[scale=0.6, transform shape,american,
+longL/.style = {L, inductors/width=2, inductors/coils=6},
+shortL/.style = {L, inductors/coils=3}]
+    \draw (1,0) to [short] (2,0)
+    to [longL,mirror] (2,4)
+    to [short] (2,4);
+    \draw (-2,4) to [short, i=\mbox{vom ZF-Verstärker}] (0,4) -- (2,4);
+    \draw[densely dashed] (2.5,3.5) -- (2.5,0.5);
+    \draw (1,-1) node[anchor=north]{$\oplus$} to [short,o-] (1,0) to [variable capacitor,*-*] (1,4);
+    \draw (3,0) to [shortL] (3,2)
+    to [shortL] (3,4) -- (5,4)
+    to [stroke diode] (7,4) to [short] (9,4);
+    \draw (3,0) to [short] (5,0)
+    to [open] (7,0)
+    to [short] (9,0)
+    to [shortL,mirror] (9,2)
+    to [shortL,mirror] (9,4);
+    \draw (8,0) to [short,*-] (6,2) to [stroke diode,-*] (4,4);
+    \draw (8,4) to [short,*-] (6,2) to [stroke diode,-*] (4,0);
+    \draw (5,0) to [stroke diode] (7,0);
+    \draw (3,2) -- (3.5,2) -- (3.5,-1) -- (10,-1) -- (10,0)
+    to [longL] (10,4) to [short,i<_=\mbox{vom BFO}] (12,4);
+    \draw[densely dashed] (9.5,0.5) -- (9.5,3.5);
+    \draw (9,2) to [short,*-] (8.5,2) to [short,-*] (8.5,-2);
+    \draw (6,-1) to [short,*-] (6,-2) node[rground]{} to [C,*-*] (8.5,-2) to [short,i=NF] (12,-2);
+\end{circuitikz}
+\end{document}
