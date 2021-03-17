@@ -1,10 +1,15 @@
 # Makefile:
-
 TEXS = $(wildcard *.tex)
 PDFS = $(patsubst %.tex,../build/pdf/%.pdf, $(TEXS))
 SVGS = $(patsubst %.tex,../build/svg/%.svg, $(TEXS))
 
 all: $(SVGS)
+
+# Builds single question with << make [questionname].pdf >>
+%.pdf: %.tex
+	TEXINPUTS=.:../common//: lualatex -output-directory=../build/pdf $< > /dev/null
+	rm -f ../build/pdf/*.aux ../build/pdf/*.log
+
 
 .SECONDARY:
 

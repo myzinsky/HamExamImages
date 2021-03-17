@@ -1,6 +1,13 @@
 \documentclass[convert = false, border=5pt]{standalone}
 \input{../common/settings.tex}
 \usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
 
 \begin{document}
 \begin{circuitikz}[european,
@@ -17,9 +24,8 @@ longL/.style = {L, inductors/width=2.85, inductors/scale=1}]
     \draw (6.5,2) -- (7,2) -- (7,5) -- (11,5) (13,5) to [Tnpn,name=npn1,l=$T_1$] (11,5);
     \draw ($(npn1)-(0,0.18)$) circle [radius=14pt]; 
     \draw (13,5) -- (14,5);
-    \draw (8,-1) to [C,*-*,l_=$1000\mu$,name=C1] (8,5);
-    \draw (C1) ++ (0,0.2) node[anchor=south east]{$+$};
-    \draw (10,-1) to [C,*-*,l=$100\mu$,name=C2] (10,3) to [R,l=$R_1$,*-*] (10,5);
+    \draw (8,-1) to [ecapacitor,*-*,l_=$1000\mu$, invert] (8,5);
+    \draw (10,-1) to [ecapacitor,*-*,l=$100\mu$, invert] (10,3) to [R,l=$R_1$,*-*] (10,5);
     \draw (10,3) to [R,l=$R_2$] (12,3) to [short,*-] (12,4.2);
     \draw (12,-1) node[rground]{} to [short,*-] (12,1) to [Tnpn,name=npn2,l=$T_2$,mirror] (12,3);
     \draw ($(npn2)+(0.18,0)$) circle [radius=14pt]; 

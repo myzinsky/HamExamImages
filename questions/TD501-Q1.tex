@@ -22,7 +22,7 @@
     to [C] ++ (2,0) to [short, -o] ++ (1,0) node[anchor=west] {NF};
     \draw (T.B1) to [open] ++ (2,0) to [C,*-*] ++ (0,-2.1);
     \draw (T.B1) to [open] ++ (3,0) to [european resistor,*-*] ++ (0,-2.1) to [open,-*] ++ (1,0) node[rground]{};
-    \draw (T.B1) to [open] ++ (5,0) to [C,*-*,name=Cap] ++ (0,-2.1);
-    \draw (Cap) node[anchor=south east]{$\oplus$};
+    \draw (T.B1) to [open] ++ (5,0) to [C,*-*, name=C3] ++ (0,-2.1);
+    \draw (C3) ++ (0,0.1) node[anchor=south east]{$+$};
 \end{circuitikz}
 \end{document}
