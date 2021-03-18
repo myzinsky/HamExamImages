@@ -15,10 +15,10 @@
   \draw (0,1.5) node[ nand port](top){};
   \draw (0,0) node[ nand port](mid){};
   \draw (0,-1.5) node[not port](bot){};
-  \draw (top.in 2) to[short, -o] ++(-1,0) node[anchor=east]{$0$};
-  \draw (mid.in 2) to[short, -o] ++(-1,0) node[anchor=east]{$1$};
-  \draw (top.in 1) -- ++(0,.5) -- ++(2.5,0) coordinate (A) -- (A|-mid.out) to[short, *-o] ++(.5,0) node[anchor=west]{$X$} -- (mid.out);
+  \draw (top.in 2) to[short, -o] ++(-1,0) node[anchor=east]{0};
+  \draw (mid.in 2) to[short, -o] ++(-1,0) node[anchor=east]{1};
+  \draw (top.in 1) -- ++(0,.5) -- ++(2.5,0) coordinate (A) -- (A|-mid.out) to[short, *-o] ++(.5,0) node[anchor=west]{X} -- (mid.out);
   \draw (top.out) -- ++(0,-.75) coordinate (B) -- (B-|mid.in 1) coordinate (C) -- (C|-mid.in 1) to[short,*-] (bot.in 1);
-  \draw (bot.out) to[short, -o] ++(1,0) node[anchor=west] {$Y$};
+  \draw (bot.out) to[short, -o] ++(1,0) node[anchor=west] {Y};
 \end{circuitikz}
 \end{document}

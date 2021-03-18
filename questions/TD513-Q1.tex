@@ -1,34 +1,40 @@
 \documentclass[convert = false, border=5pt]{standalone}
 \input{../common/settings.tex}
 \usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
 
 \begin{document}
 \begin{circuitikz}[scale=0.5, transform shape,american,
-longL/.style = {L, inductors/width=1, inductors/coils=4},
-shortL/.style = {L, inductors/coils=2,inductors/width=0.5}]
-    \draw (-1,0) to [short,i=NF] (0,0) to [C,-*,l=$C_1$] (2,0)
-    to [C,l=$C_2$] (2,-4) node[rground]{};
+longL/.style = {L, inductors/width=1, inductors/coils=6},
+shortL/.style = {L, inductors/coils=3,inductors/width=0.5}]
+    \draw (-1,0) to [short,i=\mbox{}, l=NF] (0,0) to [C,-*,l=$\mbox{C}_1$] (2,0)
+    to [C,l=$\mbox{C}_2$] (2,-4) node[rground]{};
     \draw (2,0) to [stroke diode,-*] (4,-2)
     to [stroke diode,-*] (6,0)
     to [stroke diode,-*] (4,2)
     to [stroke diode] (2,0);
-    \draw (4,2) -- (4,3) -- (10,3) to [C,l=$C_3$,*-] (10,4);
-    \draw (9.8,4) -- (10.2,4);
+    \draw (4,2) -- (4,3) -- (11,3) to [C,l=$\mbox{C}_3$,*-] (11,4) node[rground, yscale=-1]{};
     \draw (6,0) -- (6,-4) node[rground]{};
-    \draw (4,-2) -- (4,-3) -- (10,-3);
-    \draw (10,-4) node[rground]{} to [variable capacitor,-*] (10,-3);
-    \draw (8,-3) to [european resistor,*-] (8,-1)
-    to [tgeneric,l=P] (8,1)
-    to [european resistor, -*] (8,3);
-    \draw (7.5,-4.4) to [short,i=$f_{osz}$] (7.5,-4) -- (7.5,-0.27);
-    \draw (10,3) to [longL] (10,-3);
-    \draw (10,2) to [short, *-] (9,2)
-    to [C,l=$C_5$] (9,-2)
-    to [short,-*] (10,-2);
-    \draw[densely dashed] (10.5,0.7) -- (10.5,-0.7);
-    \draw (9.5,-0.5) -- (10.6,0.5);
-    \draw (10.4,0.7) -- (10.8,0.3);
-    \draw (11,-4) node[rground]{} -- (11,-1.5)
-    to [shortL] (11,1) to [short,i=Pufferstufe] (12,1);
+    \draw (4,-2) -- (4,-3) -- (11,-3);
+    \draw (11,-4) node[rground]{} to [variable capacitor,-*, l=$\mbox{C}_{4}$, bipoles/tunable arrow={Bar}] (11,-3);
+    \draw (8,-3) to [european resistor,*-, l_=$\mbox{R}_{3}$] (8,-1)
+    to [tgeneric,l=P, bipoles/tunable arrow={Bar}] (8,1)
+    to [european resistor, -*, l_=$\mbox{R}_{1}$] (8,3);
+    \draw (7.5,-4.4) to [short,i=$\mbox{f}_{osz}$] (7.5,-4) -- (7.5,-0.27);
+    \draw (11,3) to [longL] (11,-3);
+    \draw (11,2) to [short, *-] (9.5,2)
+    to [C,l=$\mbox{C}_5$] (9.5,-2)
+    to [short,-*] (11,-2);
+    \draw[densely dashed] (11.5,0.7) -- (11.5,-0.8);
+    \draw (10.5,-0.5) -- (11.6,0.5);
+    \draw (11.4,0.7) -- (11.8,0.3);
+    \draw (12,-4) node[rground]{} -- (12,-1.5)
+    to [shortL] (12,1) to [short,i=Pufferstufe] (13,1);
 \end{circuitikz}
 \end{document}

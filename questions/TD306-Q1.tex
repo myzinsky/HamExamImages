@@ -12,24 +12,26 @@
 \begin{document}
 \begin{circuitikz}[european,
 longL/.style = {L, inductors/width=2.85, inductors/scale=1}]
-    \draw (0,0) to [short,o-] (2,0) node[anchor=north]{$n_1$} to [longL] (2,4) node[anchor=south]{$T_r$} to [short,-o] (0,4);
+    \draw (0,0) to [short,o-] (2,0) node[anchor=north]{$\mbox{n}_1$} to [longL] (2,4) node[anchor=south]{$\mbox{T}_r$} to [short,-o] (0,4);
     \draw (0,2) node[]{230 V$\sim$};
-    \draw (2.7,0) node[anchor=north]{$n_2$} to [longL] (2.7,4);
+    \draw (2.7,0) node[anchor=north]{$\mbox{n}_2$} to [longL] (2.7,4);
     \draw (2.35,0) -- (2.35,4);
     \draw (2.7,0) -- (5,0) node[anchor=north]{B 30 C 250} to [short,-*] (5,0.5) to [stroke diode,-*] (6.5,2)
     (3.5,2) to [stroke diode, *-*] (5,0.5);
     \draw (2.7,4) -- (5,4) to [short,-*] (5,3.5) to [stroke diode,-*] (6.5,2)
     (3.5,2) to [stroke diode, *-*] (5,3.5);
-    \draw (3.5,2) -- (3.4,2) -- (3.4,-1) to [short,-o] (16,-1) node[anchor=west]{$-$};
-    \draw (6.5,2) -- (7,2) -- (7,5) -- (11,5) (13,5) to [Tnpn,name=npn1,l=$T_1$] (11,5);
-    \draw ($(npn1)-(0,0.18)$) circle [radius=14pt]; 
+    \draw (3.5,2) -- (3.4,2) -- (3.4,-1) to [short,-o] (16,-1) node[anchor=west]{-};
+    \draw (6.5,2) -- (7,2) -- (7,5) -- (11,5) (13,5) to [Tnpn,name=npn1] (11,5);
+    \draw ($(npn1)+(0.4,0.3)$) node[]{$\mbox{T}_1$};
+    \draw ($(npn1)-(0,0.18)$) circle [radius=12pt]; 
     \draw (13,5) -- (14,5);
-    \draw (8,-1) to [ecapacitor,*-*,l_=$1000\mu$, invert] (8,5);
-    \draw (10,-1) to [ecapacitor,*-*,l=$100\mu$, invert] (10,3) to [R,l=$R_1$,*-*] (10,5);
-    \draw (10,3) to [R,l=$R_2$] (12,3) to [short,*-] (12,4.2);
-    \draw (12,-1) node[rground]{} to [short,*-] (12,1) to [Tnpn,name=npn2,l=$T_2$,mirror] (12,3);
-    \draw ($(npn2)+(0.18,0)$) circle [radius=14pt]; 
+    \draw (8,-1) to [ecapacitor,*-*,l_=1000\textmu, invert] (8,5);
+    \draw (10,-1) to [ecapacitor,*-*,l=100\textmu, invert] (10,3) to [R,l=$\mbox{R}_1$,*-*] (10,5);
+    \draw (10,3) to [R,l=$\mbox{R}_2$] (12,3) to [short,*-] (12,4.2);
+    \draw (12,-1) node[rground]{} to [short,*-] (12,1) to [Tnpn,name=npn2,mirror] (12,3);
+    \draw ($(npn2)+(0.3,0.7)$) node[]{$\mbox{T}_2$};
+    \draw ($(npn2)+(0.18,0)$) circle [radius=12pt]; 
     \draw (14,2) to [short,*-] (12.5,2);
-    \draw (14,-1) to [R,l=$R_3$,*-*] (14,1) to [stroke Zener diode,l=$Z_1$,*-*] (14,5) to [short,-o] (16,5) node [anchor=west]{$+ U_a$};
+    \draw (14,-1) to [R,l=$\mbox{R}_3$,*-*] (14,1) to [stroke Zener diode,l=$\mbox{Z}_1$,*-*] (14,5) to [short,-o] (16,5) node [anchor=west]{$\mbox{+ U}_a$};
 \end{circuitikz}
 \end{document}
