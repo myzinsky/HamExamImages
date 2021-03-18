@@ -1,6 +1,13 @@
 \documentclass[convert = false, border=5pt]{standalone}
 \input{../common/settings.tex}
 \usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
 
 \begin{document}
 \begin{circuitikz}[american,
@@ -11,7 +18,7 @@ shortL/.style = {L, inductors/coils=3}]
     to [longL,mirror] (2,4)
     to [short, -o] (0,4)
     to [open,l_=ZF] (0,0);
-    \draw (1,0) to [variable capacitor, name=varcap1] (1,4);
+    \draw (1,0) to [variable capacitor, bipoles/tunable arrow={Bar}] (1,4);
     \draw (3,0) to [shortL] (3,2)
     to [shortL] (3,4) -- (5,4)
     to [stroke diode] (7,4) to [short,-o] (10,4);
@@ -20,8 +27,8 @@ shortL/.style = {L, inductors/coils=3}]
     to [short, -o] (10,0)
     to [open,l_=NF] (10,4);
     \draw (3,2) to [short, *-] (9,2);
-    \draw (5,0) to [variable capacitor,*-*,l=$f_1$] (5,2)
-    to [variable capacitor,*-*,l=$f_1$] (5,4);
+    \draw (5,0) to [variable capacitor,*-*,l=$f_1$, bipoles/tunable arrow={Bar}] (5,2)
+    to [variable capacitor,*-*,l=$f_1$, bipoles/tunable arrow={Bar}] (5,4);
     \draw (7,0) to [C,*-*] (7,2)
     to [C,*-*] (7,4);
     \draw (9,0) node[rground]{} to [european resistor,*-*] (9,2)

@@ -1,5 +1,13 @@
 \documentclass[convert = false, border=5pt]{standalone}
 \usepackage[siunitx, straightvoltages]{circuitikzgit}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+
 \begin{document}
 \begin{circuitikz}[european, scale=0.9]
     \draw (0,0) to [phR, l=C] (0,2);
