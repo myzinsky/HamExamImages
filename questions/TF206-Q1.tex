@@ -3,6 +3,14 @@
 \documentclass[convert = false, border=5pt]{standalone}
 \input{../common/settings.tex}
 
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+
 \begin{document}
 
 \begin{circuitikz}
@@ -30,7 +38,7 @@
     \draw (mix.west) node[inputarrow] {} to [short] ++(-0.5,0);
     \draw (mix.east) to [short] ++(0.5,0);
     \draw (8.5,2.15) node[] {28...30\,MHz};
-    \draw (7,1) node[] {$f_{OSZ}$};
+    \draw (7,1) node[] {${\mbox{f}}_{\mbox{OSZ}}$};
     \draw (2.5,2.15) node[] {436...440\,MHz};
 \end{circuitikz}
 \end{document}
