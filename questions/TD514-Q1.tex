@@ -4,20 +4,23 @@
 
 \begin{document}
 \begin{circuitikz}[american]
-    \draw (0,0) to [short, o-o] (11,0) node[anchor=west]{$-$};
+    \draw (0,0) to [short, o-o] (12,0) node[anchor=west]{$-$};
     \draw (0,2) node[]{NF/BB};
     \draw (0,4) to [european resistor,o-*] (2,4)
     to [C] (4,4) -- (6,4)
-    to [C] (8,4);
-    \draw (6,5) node[rground]{} to [C] (6,6) -- (9,6)
-    to [european resistor,-o] (11,6) node[anchor=west]{$+$};
-    \draw (8.5,0) node[rground]{} to [european resistor,*-*] (8.5,2) -- (8.5,3) to [Tnpn,name=npn] (8.5,5) -- (8.5,6);
+    to [C] (7.5,4) -- (9,4);
+    \draw (6,5) node[rground]{} to [C] (6,6) -- (9.5,6)
+    to [european resistor,-o] (12,6) node[anchor=west]{$+$};
+    \draw (9.5,0) node[rground]{} to [european resistor,*-*] (9.5,2) -- (9.5,3) to [Tnpn,name=npn] (9.5,5) to [short, -*] (9.5,6);
     \draw ($(npn)-(0.18,0)$) circle [radius=14pt];
-    \draw (2,0) to [stroke varcap,*-*] (2,4);
+    \ctikzset{diodes/scale=0.6};
+    \draw (2,0) to [stroke diode, *-*, name=capacitivediode] (2,4);
+    \ctikzset{diodes/scale=1};
+    \draw (capacitivediode) ++ (0.3,0.6) node[]{} to [C, /tikz/circuitikz/bipoles/length=0.4cm] ++ (0,-0.4);
     \draw (4,0) to [L,*-*] (4,4);
     \draw (5,0) to [C,*-*] (5,4);
     \draw (6,0) to [C,*-*] (6,2) to [C,*-*] (6,4);
     \draw (7.6,0) to [european resistor,*-] (7.6,2) -- (7.6,4) to [european resistor,*-*] (7.6,6);
-    \draw (6,2) -- (8,2) to [C,-o] (11,2);
+    \draw (6,2) -- (9.5,2) to [C,-o] (12,2);
 \end{circuitikz}
 \end{document}

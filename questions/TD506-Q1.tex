@@ -3,11 +3,11 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{unicode-math}
+\usepackage[euler]{textgreek}
 \setmathfont{Fira Math}
 \setmathfont[range=up]{Roboto}
 \setmathfont[range=it]{Roboto-Italic}
 \setmathfont[range=\int]{Fira Math}
-\usepackage[euler]{textgreek}
 
 \begin{document}
 \begin{circuitikz}[american,
@@ -27,8 +27,8 @@ shortL/.style = {L, inductors/coils=3}]
     to [short, -o] (10,0)
     to [open,l_=NF] (10,4);
     \draw (3,2) to [short, *-] (9,2);
-    \draw (5,0) to [variable capacitor,*-*,l=$f_1$, bipoles/tunable arrow={Bar}] (5,2)
-    to [variable capacitor,*-*,l=$f_1$, bipoles/tunable arrow={Bar}] (5,4);
+    \draw (5,0) to [variable capacitor,*-*,l=$\text{f}_1$, bipoles/tunable arrow={Bar}] (5,2)
+    to [variable capacitor,*-*,l=$\text{f}_1$, bipoles/tunable arrow={Bar}] (5,4);
     \draw (7,0) to [C,*-*] (7,2)
     to [C,*-*] (7,4);
     \draw (9,0) node[rground]{} to [european resistor,*-*] (9,2)
