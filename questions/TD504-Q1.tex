@@ -1,0 +1,29 @@
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amssymb}
+
+\begin{document}
+\begin{circuitikz}[american]
+    \draw [densely dashed] (0,-0.7) -- (0,0.7);
+    \draw (-0.6,-0.6) -- (0.6,0.6);
+    \draw (0.5,0.7) -- (0.7,0.5);
+    \draw (0,0) node[transformer](T){};
+    \draw (T.A1) to [short,-o] ++ (-1,0);
+    \draw (T.A2) to [short,-o] ++ (-1,0);
+    \draw (-3,-0.5) to [open,l=ZF] (-2,-0.5);
+    \draw (T.A1) to [C,*-*] (T.A2) ++ (-1,0);
+    \draw (T.B1) to [C,*-*] (T.B2);
+    \draw (T.B1) to [stroke diode] ++ (2,0)
+    to [short] ++ (1,0)
+    to [european resistor] ++ (2,0)
+    to [short,-o] ++ (1,0);
+    \draw (T.B2) to [short, -o] ++ (6,0);
+    \draw (T.B1) to [open] ++ (3,0) --++(0,1)
+    to [C] ++ (2,0) to [short, -o] ++ (1,0) node[anchor=west] {};
+    \draw (T.B1) to [open] ++ (2,0) to [C,*-*] ++ (0,-2.1);
+    \draw (T.B1) to [open] ++ (3,0) to [european resistor,*-*] ++ (0,-2.1) to [open,-*] ++ (1,0) node[rground]{};
+    \draw (T.B1) to [open] ++ (5,0) to [C,*-*, name=C3] ++ (0,-2.1);
+    \draw (C3) ++ (0,0.1) node[anchor=south east]{$+$};
+    \draw (3.05,1.4) node[]{X};
+\end{circuitikz}
+\end{document}
