@@ -1,0 +1,14 @@
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amssymb}
+
+\begin{document}
+\begin{circuitikz}[european]
+    % \ctikzset{wiper end arrow ={latex}} % Set straight wiper arrows when using circuitikz 1.3.3
+    \draw (0,3) node[antenna]{} -- (0,2) to [american inductor,mirror,name=inductor] (0,0);
+    \draw (0,0) -- (10,0) to [rmeter,mirror,t=$\nearrow$] (10,3) -- (7.5,3) -- (7.5,1.78);
+    \draw (2,0) to [short,*-] (2,1) to [variable capacitor, bipoles/tunable arrow={latex}] (2,3) to [short,-*] (0,3);
+    \draw (inductor.s) to [short,*-] ++ (3,0) -- (3.05,3) to [stroke diode] (5,3) -- (7,3) to [tgeneric, bipoles/tunable arrow={latex}] (7,0);
+    \draw (5,0) to [C,*-*] (5,3);
+\end{circuitikz}
+\end{document}

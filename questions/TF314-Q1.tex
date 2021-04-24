@@ -1,0 +1,27 @@
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\usepackage[euler]{textgreek}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+
+\begin{document}
+\begin{circuitikz}[european]
+    \draw (0,0) to [short,-o] (10,0) node[anchor=west]{$-$};
+    \draw (0,4) -- (4,4) to [C,l=$C_2$] (6,4) -- (7.4,4);
+    \draw (4,6) -- (8,6) to [R,*-o,l=$R_1$] (10,6) node[anchor=west]{$+$};
+    \draw (4,2) to [short,*-*] (8,2) node[anchor=west]{D};
+    \draw (8,0) node[rground]{} to [R,*-*,l=$R_2$] (8,2) -- (8,3) to [Tnpn,name=npn] (8,5) to [short,-*] (8,6);
+    \draw ($(npn)-(0.18,0)$) circle [radius=14pt];
+    \draw (npn) ++ (0.7,0) node[]{$T_1$};
+    \draw (0,0) to [american inductor,l=L] (0,4)
+    (2,0) to [variable capacitor,*-*,l=$C_1$] (2,4) node[anchor=south]{A}
+    (4,0) to [C,*-*,l=$C_4$] (4,2) to [C,*-*,l=$C_3$] (4,4)
+    (6,0) to [R,*-,l=$R_3$] (6,2) -- (6,4) node[anchor=south west]{C} to [R,*-*,l_=$R_4$] (6,6) node[anchor=south]{B};
+    \draw (4,5) node[rground]{} to [C,l=$C_5$] (4,6);
+\end{circuitikz}
+\end{document}

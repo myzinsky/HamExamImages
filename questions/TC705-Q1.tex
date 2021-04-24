@@ -1,0 +1,18 @@
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amssymb}
+
+\begin{document}
+\begin{circuitikz}[european]
+    \draw (0,1.25) node[anchor=east]{$-$} to [short,o-*] (4,1.25) node[rground]{} to [short, -o] (5,1.25);
+    \draw (4,1.5) to [Tnpn, name=npnB] (4,2.5)
+    to [Tnpn, -*, name=npnA] (4,4)
+    to [R] (4,6)
+    to [short,-o] (0,6) node[anchor=east]{$+$};
+    \draw ($(npnB)-(0.18,0)$) circle [radius=14pt];
+    \draw ($(npnA)-(0.18,0)$) circle [radius=14pt];
+    \draw (4,4) to [short,-o] (5,4) node[anchor=west]{Z};
+    \draw (0,2) node[anchor=east]{B} to [R,o-] (3.2,2);
+    \draw (0,3.25) node[anchor=east]{A} to [R,o-] (3.2,3.25);
+\end{circuitikz}
+\end{document}

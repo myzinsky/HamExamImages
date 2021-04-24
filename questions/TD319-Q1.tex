@@ -1,0 +1,26 @@
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+
+\begin{document}
+\begin{circuitikz}[european]
+    \draw (0,0) to [short,o-o] (6,0);
+    \draw (0,4) node[anchor=east]{$+12V$} to [short,o-] (2,4);
+    \draw (2,4.5) -- (2,3.5) -- (3,3.5) -- (3,4.5) -- (2,4.5);
+    \draw (2.5,4) node[]{U};
+    \draw (2.5,4.5) node[anchor=south]{7806};
+    \draw (3,4) to [short,-o] (6,4) node[anchor=west]{?};
+    \draw (1,0) to [C,*-*,l=$0.1\mu$] (1,4);
+    \draw (2.5,0) node[rground]{} to [ecapacitor,l=$1\mu$,*-*, invert] (2.5,2) -- (2.5,3.5);
+    \draw (3.5,4) to [open,v^=6V] (2.5,3);
+    \draw (5,0) to [R,l_=$270\Omega$,*-*] (5,2) to [R,l_=$560\Omega$,*-*] (5,4);
+    \draw (2.5,2) to [short,*-*] (5,2);
+\end{circuitikz}
+\end{document}
