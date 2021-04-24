@@ -29,3 +29,4 @@ Mitwirkende
 ===========
 
 - Dr. Matthias Jung, DL9MJ
+- Mago, DM4GO
