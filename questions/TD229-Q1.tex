@@ -1,0 +1,101 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+\begin{document}
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (-6,-4) grid (16,4);
+    \draw(0,0) to [short] ++(1,0)
+               node[circ](dx1){}
+               to [short] ++(1,0);
+    \draw(0,3) to [short] ++(1,0)
+               node[circ](dc1){}
+               to [short] ++(1,0)
+               to [american inductor] ++(0,-3);
+
+    \draw(5,0) to [short] ++(-1,0)
+               node[circ](dx2){}
+               to [short] ++(-1,0)
+               to [american inductor] ++(0,3);
+    \draw(5,3) to [short] ++(-1,0)
+               node[circ](dc2){}
+               to [short] ++(-1,0);
+
+    \draw(dx1) to [C] (dc1);
+    \draw(dx2) to [C] (dc2);
+
+    \draw(0,3) node[ocirc] (U1A) {};
+    \draw(0,0) node[ocirc] (U1B) {};
+    \draw(5,3) node[ocirc] (U2A) {};
+    \draw(5,0) node[ocirc] (U2B) {};
+
+    \draw(U1A) to[open, v=$\mbox{U}_{\mbox{1}}$] (U1B);
+    \draw(U2A) to[open, v^=$\mbox{U}_{\mbox{2}}$] (U2B);
+
+    \draw(2.5,3.5) node[] () {M};
+    \draw[-Triangle](2.5,3.25) -- (2.25,2.95);
+    \draw[-Triangle](2.5,3.25) -- (2.75,2.95);
+    % Shift figure up:
+    \draw[white](0,-1.5) node[](){.};
+
+\end{circuitikz}
+~~~~~~~
+\begin{circuitikz}
+    \draw[-Triangle](0.0,0.0) -- (5.0,0.0);
+    \draw[-Triangle](0.0,0.0) -- (0.0,5.0);
+    \draw[dashed]   (2.5,0.0) -- (2.5,5.0);
+
+    \draw(2.5,-0.5) node[] () {$\mbox{f}_{\mbox{m}}$};
+    \draw(5,0.35) node[] () {f};
+    \draw(-0.35,5) node[] () {$\mbox{U}_{\mbox{2}}$};
+
+    \draw [thick] plot [smooth, tension=1] coordinates {
+        (2.00,0.50)
+        (2.15,0.85)
+        (2.50,2.00)
+        (2.85,0.85)
+        (3.00,0.50)
+    };
+    \draw(1.80,0.5) node[] () {d};
+
+    \draw [thick] plot [smooth, tension=1] coordinates {
+        (1.50,1.0)
+        (1.80,1.6)
+        (2.50,3.5)
+        (3.20,1.6)
+        (3.50,1.0)
+    };
+    \draw(1.30,1.0) node[] () {c};
+
+    \draw [thick] plot [smooth, tension=1] coordinates {
+        (1.00,1.5)
+        (1.30,2.1)
+        (2.50,4.5)
+        (3.70,2.1)
+        (4.00,1.5)
+    };
+    \draw(0.80,1.5) node[] () {b};
+
+    \draw [thick] plot [smooth, tension=0.7] coordinates {
+        (0.50,2.00)
+        (0.80,2.60)
+        (1.60,4.50)
+        (2.50,3.80)
+        (3.40,4.50)
+        (4.20,2.60)
+        (4.50,2.00)
+    };
+    \draw(0.30,2.0) node[] () {a};
+    
+\end{circuitikz}
+\end{document}
+

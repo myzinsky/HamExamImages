@@ -1,0 +1,38 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+\ctikzset{%
+    american
+}%
+\begin{document}
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (-6,-4) grid (16,4);
+
+
+    \draw(0,0) to [C, l=$\mbox{C}_{\mbox{1}}$] ++(0,2.5)
+               to [short] ++(2,0)
+               node[circ](dx1){}
+               to [short] ++(2,0)
+               node[circ](dx2){}
+               to [short] ++(2,0)
+               to [C, l=$\mbox{C}_{\mbox{3}}$] ++(0,-2.5)
+               to [short] ++(-2,0)
+               node[circ](dc1){}
+               to [short] ++(-2,0)
+               node[circ](dc2){}
+               to [short] ++(-2,0);
+               \draw(dx1) to [L, l=L] (dc2);
+               \draw(dx2) to [C, l=$\mbox{C}_{\mbox{2}}$] (dc1);
+\end{circuitikz}
+\end{document}
+

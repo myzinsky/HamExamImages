@@ -1,0 +1,42 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+\usepackage{mathtools}
+\begin{document}
+
+\tikzset{
+    myarrow/.style={-Triangle}
+}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        xmin=0,
+        ymin=0,
+        ymax=105,
+        ticks=none,
+        axis x line=bottom,
+        axis y line=left,
+        axis line style={myarrow},
+        width=10cm,
+        height=6cm
+    ]
+    \addplot[domain=0:8, thick, smooth] {100*(1-e^(-1*x))};
+    \end{axis}
+    \draw(8.5,-0.35) node[](){t};
+    \draw(-0.35,4.3) node[](){U};
+\end{tikzpicture}
+
+
+\end{document}
+
