@@ -1,0 +1,28 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+\begin{document}
+\begin{circuitikz}
+    \draw[-Triangle](0.0,0.0) -- (5.0,0.0);
+    \draw[-Triangle](0.0,0.0) -- (0.0,5.0);
+
+    \draw(5,0.35) node[] () {f};
+    \draw(-0.35,5) node[] () {Z};
+
+    \draw [thick] plot [rounded corners=10mm] coordinates {
+        (1.80,4.50)
+        (2.50,0.00)
+        (3.20,4.50)
+    };
+\end{circuitikz}
+\end{document}
+
