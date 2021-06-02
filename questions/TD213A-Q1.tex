@@ -1,0 +1,36 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+\begin{document}
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (-6,-4) grid (16,4);
+    \draw(0,0) to [short] ++(3.5,0)
+               node[circ](dx1){}
+               to [short] ++(1.5,0);
+
+    \draw(0,3) to [C] ++(3,0)
+               to [short] ++(0.5,0)
+               node[circ](dc1){}
+               to [short] ++(1.5,0);
+    \draw(dx1) to [european resistor] (dc1);
+    \draw(0,3) node[ocirc] (U1A) {};
+    \draw(0,0) node[ocirc] (U1B) {};
+    \draw(5,3) node[ocirc] (U2A) {};
+    \draw(5,0) node[ocirc] (U2B) {};
+
+    \draw(U1A) to[open, v=$\mbox{U}_{\mbox{E}}$] (U1B);
+    \draw(U2A) to[open, v^=$\mbox{U}_{\mbox{A}}$] (U2B);
+
+\end{circuitikz}
+\end{document}
+
