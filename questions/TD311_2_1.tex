@@ -1,0 +1,57 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+% TB601
+\documentclass[convert = false, border=5pt, varwidth]{standalone}
+\input{../common/settings.tex}
+\usepackage{tikz,pgfplots}
+\usetikzlibrary{arrows}
+
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+
+\begin{document}
+
+\pgfplotsset{
+  every axis plot/.append style={line width=0.8pt},
+}
+
+\begin{tikzpicture}
+    %\draw ( 7.9, 2.30) node[]{t};
+    \begin{axis}[%
+        /pgf/number format/1000 sep={ },
+        /pgf/number format/use comma,        
+        axis lines=middle,
+        axis line style={-triangle 45},
+        width=2in,
+        height=1.8in,
+        scale only axis,
+        ytick={0},
+        every major tick/.append style={thick, black},
+        %yticklabels={-A,0,+A},
+        %xtick={0.25*pi,0.5*pi,0.75*pi,pi,1.25*pi,1.5*pi,1.75*pi,2*pi,2.5*pi},
+        %xticklabels={$\mathrm{X}_1$,$\mathrm{X}_2$,$\mathrm{X}_3$,$~~\mathrm{X}_4$,$\mathrm{X}_5$},
+        grid=major,
+        grid style={line width=.1pt, draw=gray!10},
+        major grid style={line width=.2pt,draw=gray!50},
+        xticklabel=\empty,
+        yticklabel=\empty,
+        xtick style={draw=none},
+        ytick style={draw=none},
+        xmin=0,
+        xmax=3.3*pi,
+        ymin=-1.25,
+        ymax=1.25,
+        xmajorgrids=false,
+        ymajorgrids=false,
+        tick label style={font=\footnotesize}
+    ]
+        \addplot[samples=500,domain=0:3.0*pi,smooth,black] {abs(sin(deg(x)))}; 
+\end{axis}
+\end{tikzpicture}%
+\end{document}
+

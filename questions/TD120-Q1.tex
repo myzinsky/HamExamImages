@@ -19,20 +19,19 @@
     %\draw[style=help lines] (-6,-4) grid (16,4);
 
 
-    \draw(0,0) to [C, l=$\mbox{C}_{\mbox{1}}$] ++(0,2.5)
+    \draw(0,0) to [C, l=$\mathrm{C}_{\mathrm{1}}$] ++(0,2.5)
                to [short] ++(2,0)
                node[circ](dx1){}
                to [short] ++(2,0)
                node[circ](dx2){}
                to [short] ++(2,0)
-               to [C, l=$\mbox{C}_{\mbox{3}}$] ++(0,-2.5)
+               to [C, l=$\mathrm{C}_{\mathrm{3}}$] ++(0,-2.5)
                to [short] ++(-2,0)
                node[circ](dc1){}
                to [short] ++(-2,0)
                node[circ](dc2){}
                to [short] ++(-2,0);
                \draw(dx1) to [L, l=L] (dc2);
-               \draw(dx2) to [C, l=$\mbox{C}_{\mbox{2}}$] (dc1);
+               \draw(dx2) to [C, l=$\mathrm{C}_{\mathrm{2}}$] (dc1);
 \end{circuitikz}
 \end{document}
-

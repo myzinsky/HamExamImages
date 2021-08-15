@@ -1,0 +1,49 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2021
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+\begin{document}
+\begin{circuitikz}
+    \draw [dashed] (0,0) -- ++(0.55,0) coordinate(a);
+    \draw (a) to [short,o-o] ++(0.5,0)
+              to [short,-*] ++(1,0) coordinate(b);
+    \ctikzset{inductors/coils=2, inductors/scale=0.5, capacitors/scale=0.5}
+    \draw(b)  to [short] ++(0,0.35);
+    \draw(b)  to [open] ++(0.5,0.35)
+              arc(0:180:0.125)
+              arc(0:180:0.125);
+    \draw(b)  to [open] ++(0.5,0.35)
+              to [short] ++(0,-0.35);
+    \draw(b)  to [short] ++(0,-0.35)
+              to [C] ++(0.5,0)
+              to [short,-*] ++(0,+0.35)
+              to [short,-*] ++(2,0) coordinate(x1)
+              to [open] ++(0.5,0) coordinate(x2)
+              to [short,*-*] ++(2,0) coordinate(c);
+    \draw(c)  to [short] ++(0,0.35);
+    \draw(c)  to [open] ++(0.5,0.35)
+              arc(0:180:0.125)
+              arc(0:180:0.125);
+    \draw(c)  to [open] ++(0.5,0.35)
+              to [short] ++(0,-0.35);
+    \draw(c)  to [short] ++(0,-0.35)
+              to [C] ++(0.5,0)
+              to [short,-*] ++(0,+0.35)
+              to [short,-o] ++(1,0)
+              to [short,-] ++(0.5,0) coordinate(d);
+    \draw [dashed] (d) -- ++(0.55,0);
+    \draw (d) to [short,-o] ++(0.0,0);
+
+    \draw (x1) to [open] ++(0,-0.35) node[]{X};
+    \draw (x2) to [open] ++(0,-0.35) node[]{X};
+\end{circuitikz}
+\end{document}
+

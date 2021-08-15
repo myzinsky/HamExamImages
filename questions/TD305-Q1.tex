@@ -41,8 +41,8 @@
     \draw(T.A1) to [short, -o] ++(-1,0);
     \draw(T.A2) to [short, -o] ++(-1,0);
     %
-    \draw(-3.9,0) node[]{$\mbox{U}_{\mbox{PRIM}}$};
-    \draw(-1.2,0) node[]{$\mbox{U}_{\mbox{SEK}}$};
+    \draw(-3.9,0) node[]{$\textrm{U}_{\textrm{PRIM}}$};
+    \draw(-1.2,0) node[]{$\textrm{U}_{\textrm{SEK}}$};
     %
     \draw(C1) |- (10.5,-3) to [short, -o] ++(0,0);
     \draw(C4) -- ++(1.5, 0)
@@ -53,9 +53,9 @@
               node[circ](C7){}
               to [short, -o] ++(1.5,0);
      %
-     \draw(C5) to [C, l={$\mbox{C}_{\mbox{L}}$}] ++ (0,-3);
-     \draw(C6) to [C, l={$\mbox{C}_{\mbox{S}}$}] ++ (0,-3);
-     \draw(C7) to [R, l={R}] ++ (0,-3);
+     \draw(C5) to [C, l={$\textrm{C}_{\textrm{L}}$}] ++ (0,-3) node[circ]{};
+     \draw(C6) to [C, l={$\textrm{C}_{\textrm{S}}$}] ++ (0,-3) node[circ]{};
+     \draw(C7) to [R, l={R}] ++ (0,-3) node[circ]{} ;
      %
     \draw (10.85,-3.08) node []{\Large--};
     \draw (10.85,-0.02) node []{\Large+};

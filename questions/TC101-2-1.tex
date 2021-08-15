@@ -1,0 +1,26 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2021
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+\begin{document}
+\begin{circuitikz}
+    \draw (0,2) to [battery1] ++(0,-2)
+                to [short,-*] ++(1.5,0) coordinate(n1)
+                to [short] ++(2,0) coordinate(n2)
+                to [R,l_=R] ++(0,2) coordinate(n3)
+                to [rmeter, t=V, -*] ++(-2,0) coordinate(n4)
+                to [short] ++ (-1.5,0);
+    \draw (n1)  to [rmeter, t=A, -*] (n4);
+    \draw(n2)  node[ocirc] (U1A) {};
+    \draw(n3)  node[ocirc] (U2A) {};
+\end{circuitikz}
+\end{document}
+

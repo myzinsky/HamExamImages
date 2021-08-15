@@ -1,0 +1,29 @@
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+
+\begin{document}
+\begin{circuitikz}[european]
+    \draw (0,1) to [short,o-o] (6,1);
+    \draw (0,4) node[anchor=east]{$\textrm{+13,8V}$} to [short,o-] (2.5,4);
+    \draw (2.5,4.5) -- (2.5,3.5) -- (3.5,3.5) -- (3.5,4.5) -- (2.5,4.5);
+    \draw (3.0,4) node[]{$\textrm{IC}_{1}$};
+    \draw (2.5,4.5) node[anchor=south]{};
+    \draw (3.5,4) to [short,-o] (6,4) node[anchor=west]{}
+        to [short] ++(1,0)
+        to [R, l={$\textrm{R}_\textrm{L} = 10\Omega$}] ++(0,-3)
+        to [short] ++(-0.95,0);
+    \draw (1,1) to [ecapacitor,*-*,invert] (1,4);
+    \draw (1.0,1) node[rground]{};
+    \draw (3.0,3.5) to [short,-*] (3.0,1);
+    \draw (5,1) to [C,*-*] (5,4);
+    \draw (6.0,4.30) node[]{$\textrm{+5,0V}$};
+\end{circuitikz}
+\end{document}

@@ -1,0 +1,44 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2021
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+\begin{document}
+\begin{circuitikz}
+    \draw(0,0)  to [short,-*] ++(1,0);
+                
+    \draw(1,0)  to [short] ++(0,1)
+                to [american inductor] ++(2,0)
+                to [short, -*] ++(0,-1);
+    \draw(1,0)  to [R] ++(2,0)
+                to [short] ++(3,0);
+
+    \draw(1,0)  to [short] ++(0,-1)
+                to [C] ++(2,0)
+                to [short, -*] ++(0,+1);
+
+    \draw(0,0)  node[ocirc] (U1A) {};
+    \draw(6,0)  node[ocirc] (U2A) {};
+\end{circuitikz}
+\begin{circuitikz}
+    \draw[-Triangle](0.0,0.0) -- (3.0,0.0);
+    \draw[-Triangle](0.0,0.0) -- (0.0,3.0);
+
+    \draw(3,0.35) node[] () {f};
+    \draw(-0.35,3) node[] () {Z};
+
+    \draw [thick] plot [rounded corners=10mm] coordinates {
+        (0.80,2.50)
+        (1.50,0.00)
+        (2.20,2.50)
+    };
+\end{circuitikz}
+\end{document}
+

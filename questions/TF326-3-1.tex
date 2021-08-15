@@ -1,0 +1,19 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\begin{document}
+\begin{circuitikz}
+
+    \draw[-Triangle](0.0,0.0) -- (5.0,0.0);
+    \draw[-Triangle](0.0,0.0) -- (0.0,5.0);
+
+    \draw(5,0.35) node[] () {f};
+    \draw(-0.35,5) node[] () {U};
+
+    \draw[rounded corners=3mm, thick, black] (0,0) -- (1.8,0) -- (2.3,4) -- (5,4);
+
+    \draw [dashed] (2.5,0) -- (2.5,5);
+    
+\end{circuitikz}
+\end{document}

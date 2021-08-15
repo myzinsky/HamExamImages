@@ -1,0 +1,70 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+% TB601
+\documentclass[convert = false, border=5pt, varwidth]{standalone}
+\input{../common/settings.tex}
+\usepackage{tikz,pgfplots}
+\usetikzlibrary{arrows}
+
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+
+\begin{document}
+
+\pgfplotsset{
+  every axis plot/.append style={line width=0.8pt},
+}
+
+\begin{tikzpicture}
+    \draw (-0.5,4.5) node[]{$\mathrm{U}_\mathrm{A}$};
+    \draw ( 7.9,2.3) node[]{t};
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,0) grid (6,4);
+
+    \draw[thick]
+    (0,2.29) -- ++(1.8,0)
+    sin ++(0.5,+1.51)
+    cos ++(0.5,-1.51) -- ++(3,0)
+    sin ++(0.5,+1.51)
+    cos ++(0.5,-1.51) -- ++(0.5,0);
+
+    \begin{axis}[%
+        /pgf/number format/1000 sep={ },
+        /pgf/number format/use comma,        
+        axis lines=middle,
+        axis line style={-triangle 45},
+        width=3in,
+        height=1.8in,
+        scale only axis,
+        %yticklabel=\empty,
+        ytick={-1,0,1},
+        every major tick/.append style={thick, black},
+        yticklabels={-10~V,0,+10~V},
+        %xtick={pi/2,pi,1.5*pi,2*pi,2.5*pi},
+        %xticklabels={$\mathrm{X}_1$,$\mathrm{X}_2$,$\mathrm{X}_3$,$~~\mathrm{X}_4$,$\mathrm{X}_5$},
+        grid=major,
+        grid style={line width=.1pt, draw=gray!10},
+        major grid style={line width=.2pt,draw=gray!50},
+        xticklabel=\empty,
+        %yticklabel=\empty,
+        %ticks=none,
+        xtick style={draw=none},
+        %ytick style={draw=none},
+        xmin=0,
+        xmax=4.2*pi,
+        ymin=-1.5,
+        ymax=1.5,
+        xmajorgrids=false,
+        %label style={font=\small},
+        tick label style={font=\footnotesize}
+    ]
+    %\addplot[samples=500,domain=0:4.0*pi,smooth,black] {sin(deg(x))}; 
+\end{axis}
+\end{tikzpicture}%
+\end{document}
+

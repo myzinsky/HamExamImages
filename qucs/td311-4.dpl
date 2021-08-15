@@ -1,0 +1,28 @@
+<Qucs Schematic 0.0.19>
+<Properties>
+  <View=0,0,872,800,1,0,0>
+  <Grid=10,10,0>
+  <DataSet=td311-4.dat>
+  <DataDisplay=td311-4.sch>
+  <OpenDisplay=1>
+  <Script=td311-4.m>
+  <RunScript=0>
+  <showFrame=0>
+  <FrameText0=Title>
+  <FrameText1=Erstellt von:>
+  <FrameText2=Datum:>
+  <FrameText3=Revision:>
+</Properties>
+<Symbol>
+</Symbol>
+<Components>
+</Components>
+<Wires>
+</Wires>
+<Diagrams>
+  <Rect 190 310 240 160 3 #c0c0c0 1 00 1 0 0.01 0.06 1 -0.427894 2 4.70683 1 -1 1 1 315 0 225 "" "" "">
+	<"Pr1.Vt" #0000ff 0 3 0 0 0>
+  </Rect>
+</Diagrams>
+<Paintings>
+</Paintings>

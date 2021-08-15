@@ -1,0 +1,63 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2021
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+\usetikzlibrary{arrows, arrows.meta}
+
+\begin{document}
+\begin{circuitikz}
+    \draw [dashed] (0,0) -- ++(0.55,0) coordinate(a);
+    \draw (a) to [short,o-o] ++(0.5,0)
+              to [short,-*] ++(1,0) coordinate(b);
+    \ctikzset{inductors/coils=2, inductors/scale=0.5, capacitors/scale=0.5}
+    \draw(b)  to [short] ++(0,0.35);
+    \draw(b)  to [open] ++(0.5,0.35)
+              arc(0:180:0.125)
+              arc(0:180:0.125);
+    \draw(b)  to [open] ++(0.5,0.35)
+              to [short] ++(0,-0.35);
+    \draw(b)  to [short] ++(0,-0.35)
+              to [C] ++(0.5,0)
+              to [short,-*] ++(0,+0.35)
+              to [short,-*] ++(2,0) coordinate(x1)
+              to [open] ++(0.5,0) coordinate(x2)
+              to [short,*-*] ++(2,0) coordinate(c);
+    \draw(c)  to [short] ++(0,0.35);
+    \draw(c)  to [open] ++(0.5,0.35)
+              arc(0:180:0.125)
+              arc(0:180:0.125);
+    \draw(c)  to [open] ++(0.5,0.35)
+              to [short] ++(0,-0.35);
+    \draw(c)  to [short] ++(0,-0.35)
+              to [C] ++(0.5,0)
+              to [short,-*] ++(0,+0.35)
+              to [short,-o] ++(1,0)
+              to [short,-] ++(0.5,0) coordinate(d);
+    \draw [dashed] (d) -- ++(0.55,0);
+    \draw (d) to [short,-o] ++(0.0,0);
+
+    % Kurze Striche:
+    \draw (2.55,0.55) -- ++ (0,0.6);
+    \draw (7.05,0.55) -- ++ (0,0.6);
+
+    % Pfeile:
+    \draw[>=triangle 60, <-] (2.55,0.95) -- ++(2,0);
+    \draw[>=triangle 60, ->] (5.05,0.95) -- ++(2,0);
+
+    % Text:
+    \draw (4.812,0.95) node[]{l};
+    \draw (3.05,-0.75) node[]{$\mathrm{f}_\mathrm{res}$};
+
+    \draw (2.75,-0.55) -- ++ (-0.45,0.55);
+
+\end{circuitikz}
+\end{document}
+
