@@ -1,0 +1,56 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+
+\begin{document}
+
+\begin{circuitikz}
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,-4) grid (18,8);
+    \draw(7.5,3) node[mixer, box] (mixi) {};
+    \draw(mixi.west) node[inputarrow] {} to [short] ++(-1.0,0);
+    \draw(mixi.south) node[inputarrow, rotate=90] {} to [short] ++(0,-1);
+    %
+    \draw(7.5,-3) node[mixer, box] (mixq) {};
+    \draw(mixq.west) node[inputarrow] {} to [short] ++(-1.0,0);
+    \draw(mixq.north) node[inputarrow, rotate=-90] {} to [short] ++(0,+1);
+    \draw(7.5,-0.5) node[inputarrow, rotate=-90] {} to [short] ++(0,+1);
+    %
+    \draw(9.5,0) node[adder, box] (add) {};
+    \draw(add.east) to [short] ++(+1.0,0) node[inputarrow] {};
+    \draw(mixi.east) to [short] ++(+1.5,0)
+         to (add.north) [short] node[inputarrow, rotate=-90] {};
+    \draw(mixq.east) to [short] ++(+1.5,0)
+         to (add.south) [short] node[inputarrow, rotate=90] {};
+    %
+    \draw(7,1) to [twoport] (8,1);
+    \draw(7,-1) to [phaseshifter] (8,-1);
+    \draw(5.5,3) node[] {I(t)};
+    \draw(5.5,-3) node[] {Q(t)};
+    \draw(11.5,0) node[] {X(t)};
+    \draw(7.3,1.2) node[] {G};
+
+    \def\x{0.08}
+
+    \draw[] (7.55,1.3) sin ++(\x, \x)
+                       cos ++(\x,-\x)
+                       sin ++(\x,-\x)
+                       cos ++(\x, \x);
+
+    \draw[] (7.55,1.15)sin ++(\x, \x)
+                       cos ++(\x,-\x)
+                       sin ++(\x,-\x)
+                       cos ++(\x, \x);
+
+    \draw[] (7.55,1.0) sin ++(\x, \x)
+                       cos ++(\x,-\x)
+                       sin ++(\x,-\x)
+                       cos ++(\x, \x);
+
+    \draw(7.2,0.60) -- ++(0.6,0);
+    \draw(7.2,0.65) rectangle ++ (0.6,0.1);
+    \draw(7.2,0.80) -- ++(0.6,0);
+    %
+\end{circuitikz}
+\end{document}

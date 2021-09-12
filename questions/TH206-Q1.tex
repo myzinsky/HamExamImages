@@ -1,0 +1,72 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2021
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usetikzlibrary{calc, positioning}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+
+
+\begin{document}
+\begin{tikzpicture}
+  
+    % Yagi:
+    \draw[very thick, gray] plot[
+        variable=\t,
+        domain=0:360,
+        smooth,samples=101
+    ] 
+    ({180+60*sin(\t)}:{0.75*pow(sin(\t/2),9)});
+
+    \draw[very thick, gray] plot[
+          variable=\t,
+          domain=0:360,
+          smooth,samples=101
+      ] 
+    ({35*sin(\t)}:{7*pow(0.95*sin(\t/2),5)});
+
+
+    % Dipole:
+    \draw[thick] plot[
+        variable=\t,
+        domain=0:360,
+        smooth,samples=101
+    ] 
+    ({180+90*sin(\t)}:{3*pow(sin(\t/2),9)});
+
+    \draw[thick] plot[
+        variable=\t,
+        domain=0:360,
+        smooth,samples=101
+    ] 
+    ({90*sin(\t)}:{3*pow(sin(\t/2),9)});
+
+
+     % Lines:
+     \draw[] (-3.500, 0) -- ( 6.000, 0.0);
+     \draw[] ( 0.000,-3) -- ( 0.000,+3.0);
+     \draw[] ( 5.420, 0) -- ( 5.420,-3.0);
+     \draw[] (-0.755, 0) -- (-0.755,+3.0);
+     \draw[] ( 3.000, 0) -- ( 3.000,+3.0);
+
+     \draw[{Triangle}-{Triangle}] (0,-2.5) -- (5.420,-2.5);
+     \draw (2.71,-2.2) node[]{$\mathrm{P}_\mathrm{V}$};
+
+     \draw[{Triangle}-{Triangle}] (0,+2.5) -- (3.000,+2.5);
+     \draw (1.5,+2.8) node[]{$\mathrm{P}_\mathrm{D}$};
+
+     \draw[{Triangle}-{Triangle}] (0,+2.5) -- (-0.750,+2.5);
+     \draw (-0.375,+2.8) node[]{$\mathrm{P}_\mathrm{R}$};
+
+     % Label:
+     \draw[gray] (5,+1.8) node[]{Richtantenne};
+     \draw[black] (-2.5,-1.8) node[]{Dipol};
+
+\end{tikzpicture}
+\end{document}

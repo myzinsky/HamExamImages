@@ -1,0 +1,37 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\usepackage[siunitx, straightvoltages]{circuitikzgit}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Fira Math}
+\setmathfont[range=up]{Roboto}
+\setmathfont[range=it]{Roboto-Italic}
+\setmathfont[range=\int]{Fira Math}
+\usepackage[euler]{textgreek}
+\begin{document}
+\begin{circuitikz}[straight voltages]
+    %\tikzstyle{help lines}=[blue!50];
+    %\draw[style=help lines] (0,0) grid (16,8);
+
+    \draw(0,6) node[ocirc] (U1A) {};
+    \draw(0,0) node[] (U1B) {};
+
+    \draw(U1A) to [short, i=$\textrm{I}$] ++(2,0)
+               to [european resistor, -*, v>=$\textrm{U}_{\textrm{1}}$,
+               l=$\textrm{R}_{\textrm{1}}$] ++(0,-3) coordinate(foo)
+               to [european resistor, v>=$\textrm{U}_{\textrm{2}}$,
+               l=$\textrm{R}_{\textrm{2}}$, i=$\textrm{I}_{\textrm{2}}$] ++(0,-3)
+               to [short, -o] ++(-2,0);
+
+    \draw(foo) to [short] ++(2,0)
+               to [european resistor,l=$\textrm{R}_{\textrm{L}}$, i=$\textrm{I}_{\textrm{L}}$] ++(0,-3)
+               to [short, -*] ++(-2,0);
+
+
+    \draw(U1A) to[open, v=$\textrm{U}_{\textrm{B}}$] (U1B);
+
+\end{circuitikz}
+\end{document}
+

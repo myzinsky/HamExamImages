@@ -1,0 +1,26 @@
+% Author: Dr. Matthias Jung, DL9MJ
+% Year: 2020
+\documentclass[convert = false, border=5pt]{standalone}
+\input{../common/settings.tex}
+\begin{document}
+\begin{circuitikz}
+
+    \draw[-Triangle](0.0,0.0) -- (5.0,0.0);
+    \draw[-Triangle](0.0,0.0) -- (0.0,5.0);
+
+    \draw(5,0.40) node[] () {$\frac{\mathrm{f}}{\mathrm{kHz}}$};
+    \draw(-0.35,5) node[] () {$\frac{\mathrm{U}_\mathrm{A}}{\mathrm{dB}}$};
+
+    \draw(0.6,-0.40) node[] () {0{,}3};
+    \draw(2.5,-0.40) node[] () {3{,}4};
+
+    \draw[rounded corners=3mm, thick, black]
+        (0.3,0) -- ++(0.3,3.5) 
+                -- ++(1.9,0)
+                -- ++(0.3,-3.5);
+
+    \draw [dashed] (0.6,0) -- ++(0,5);
+    \draw [dashed] (2.5,0) -- ++(0,5);
+    
+\end{circuitikz}
+\end{document}
